@@ -149,7 +149,9 @@ project.
   `/news`, and `/donation` now reflect real IAMA information sourced from the
   legacy site (iama.org) — leadership, the 30th Annual Meeting (Kimpton Hotel
   Monaco, Washington, D.C., May 23–25, 2026), membership tiers, the four sections,
-  and contact/social details. Chapter & section data live in `src/lib/chapters.ts`
+  and contact/social details. The `/about` page has an **"Our Team"** section with
+  hover-reveal photo cards of the 12 Board of Directors (real headshots in
+  `public/images/team/`). Chapter & section data live in `src/lib/chapters.ts`
   and `src/lib/sections.ts`; news card photos live in `public/images/news/`.
 - **Still illustrative / needs real data:** the `/education` CME catalog (the
   legacy site is "Coming Soon"); per-chapter member counts and the chairs for the

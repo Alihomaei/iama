@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageHeader } from "@/components/layout/page-header";
@@ -17,72 +18,84 @@ const leadership = [
     title: "President",
     institution: "MD",
     specialty: "Executive Committee",
+    photo: "/images/team/ghazi.jpg",
   },
   {
     name: "Dr. Payam Torrei",
     title: "Vice President",
     institution: "MD",
     specialty: "Executive Committee",
+    photo: "/images/team/torrei.jpg",
   },
   {
     name: "Dr. Mohammad Sarraf",
     title: "Treasurer",
     institution: "MD",
     specialty: "Executive Committee",
+    photo: "/images/team/sarraf.jpg",
   },
   {
     name: "Dr. Hale Yarmohammadi",
     title: "Corresponding Secretary",
     institution: "MD, MPH",
     specialty: "Executive Committee",
+    photo: "/images/team/yarmohammadi.jpg",
   },
   {
     name: "Dr. Hossein Ali Shahidi",
     title: "Membership Committee Chair",
     institution: "MD",
     specialty: "Membership Committee",
+    photo: "/images/team/shahidi.jpg",
   },
   {
     name: "Dr. Nooshin Hashemzadeh",
     title: "Scientific Chair",
     institution: "PhD",
     specialty: "Scientific Committee",
+    photo: "/images/team/hashemzadeh.jpg",
   },
   {
     name: "Dr. Padideh Alizadeh",
     title: "Dental Division Chair",
     institution: "DMD",
     specialty: "Dental Section",
+    photo: "/images/team/alizadeh.jpg",
   },
   {
     name: "Dr. Reza Movahed",
     title: "Arizona Chapter President",
     institution: "MD, PhD",
     specialty: "Arizona Chapter",
+    photo: "/images/team/movahed.jpg",
   },
   {
     name: "Dr. Amir Quorbani",
     title: "California Chapter President",
     institution: "MD",
     specialty: "California Chapter",
+    photo: "/images/team/quorbani.jpg",
   },
   {
     name: "Dr. Danesh Mazloomdoost",
     title: "Member at Large",
     institution: "MD",
     specialty: "Board of Directors",
+    photo: "/images/team/mazloomdoost.jpg",
   },
   {
     name: "Dr. Arash Dabestani",
     title: "Advisor",
     institution: "PharmD",
     specialty: "Advisory",
+    photo: "/images/team/dabestani.jpg",
   },
   {
     name: "Dr. Sohrab Fallahi",
     title: "Advisor",
     institution: "MD",
     specialty: "Advisory",
+    photo: "/images/team/fallahi.jpg",
   },
 ];
 
@@ -177,37 +190,38 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-bold text-secondary">
-                Our Leadership
+                Our Team
               </h2>
               <p className="mt-3 text-lg text-muted">
-                Dedicated professionals guiding IAMA&apos;s mission forward.
+                The Board of Directors guiding IAMA&apos;s mission forward.
               </p>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {leadership.map((person) => (
-                <Card key={person.name} className="overflow-hidden">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-200 text-primary-700 text-2xl font-bold">
-                      {person.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")
-                        .slice(0, 2)}
-                    </div>
-                  </div>
-                  <CardContent className="p-5">
-                    <h3 className="font-semibold text-secondary">
-                      {person.name}
-                    </h3>
-                    <p className="text-sm font-medium text-primary">
+                <div
+                  key={person.name}
+                  className="group relative aspect-[3/4] overflow-hidden rounded-xl bg-primary-100 shadow-sm"
+                >
+                  <Image
+                    src={person.photo}
+                    alt={person.name}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Gradient + info overlay that expands on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4 text-white">
+                    <h3 className="font-semibold leading-snug">{person.name}</h3>
+                    <p className="text-sm font-medium text-primary-light">
                       {person.title}
                     </p>
-                    <p className="mt-1 text-sm text-muted">
+                    <p className="mt-1 text-xs text-white/80 max-h-0 overflow-hidden opacity-0 transition-all duration-300 group-hover:max-h-16 group-hover:opacity-100">
                       {person.institution} &middot; {person.specialty}
                     </p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
