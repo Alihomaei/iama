@@ -1,9 +1,82 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+// Background carousel images. Add more paths here to extend the rotation —
+// the left edge shows the current image, the right edge shows the next one,
+// and they advance/crossfade on a timer.
+const carouselImages = ["/images/hero-1.jpg", "/images/hero-2.jpg"];
+
+const leftMask = "linear-gradient(to right, black, black 18%, transparent 92%)";
+const rightMask = "linear-gradient(to left, black, black 18%, transparent 92%)";
 
 export function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (carouselImages.length < 2) return;
+    const timer = setInterval(
+      () => setIndex((prev) => (prev + 1) % carouselImages.length),
+      5000
+    );
+    return () => clearInterval(timer);
+  }, []);
+
+  const leftIndex = index;
+  const rightIndex = (index + 1) % carouselImages.length;
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-      {/* Decorative background pattern */}
+      {/* Background carousel — left edge, fades toward the center */}
+      <div
+        aria-hidden
+        className="absolute inset-y-0 left-0 hidden w-1/3 md:block lg:w-2/5"
+        style={{ maskImage: leftMask, WebkitMaskImage: leftMask }}
+      >
+        {carouselImages.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            fill
+            sizes="40vw"
+            priority={i === 0}
+            className={cn(
+              "object-cover transition-opacity duration-1000 ease-in-out",
+              i === leftIndex ? "opacity-100" : "opacity-0"
+            )}
+          />
+        ))}
+        {/* Teal tint so photos blend with the brand gradient */}
+        <div className="absolute inset-0 bg-primary-900/45" />
+      </div>
+
+      {/* Background carousel — right edge, fades toward the center */}
+      <div
+        aria-hidden
+        className="absolute inset-y-0 right-0 hidden w-1/3 md:block lg:w-2/5"
+        style={{ maskImage: rightMask, WebkitMaskImage: rightMask }}
+      >
+        {carouselImages.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            fill
+            sizes="40vw"
+            className={cn(
+              "object-cover transition-opacity duration-1000 ease-in-out",
+              i === rightIndex ? "opacity-100" : "opacity-0"
+            )}
+          />
+        ))}
+        <div className="absolute inset-0 bg-primary-900/45" />
+      </div>
+
+      {/* Decorative dot pattern */}
       <div className="absolute inset-0 opacity-[0.07]">
         <div
           className="absolute inset-0"
@@ -19,7 +92,7 @@ export function Hero() {
       <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary-600 opacity-20 blur-3xl" />
       <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent opacity-10 blur-3xl" />
 
-      <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center lg:px-8 lg:py-32">
+      <div className="relative z-10 mx-auto flex min-h-[540px] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center lg:px-8 lg:py-32">
         <h1 className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           Iranian American Medical Association
         </h1>
