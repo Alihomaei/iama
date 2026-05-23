@@ -4,7 +4,7 @@ import Image from "next/image";
 // Hero edge images. Carousel rotation is paused for now — the left edge always
 // shows hero-1 (speaker) and the right edge always shows hero-2 (audience).
 // To re-enable rotation later, cycle these in a small client component.
-const leftImage = "/images/hero-1.jpg";
+const leftImage = "/images/hero-1-v2.jpg";
 const rightImage = "/images/hero-2.jpg";
 
 const leftMask = "linear-gradient(to right, black, black 18%, transparent 92%)";
@@ -70,8 +70,10 @@ export function Hero() {
 
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-100 sm:text-xl">
           The Iranian American Medical Association (IAMA) is a 501(c)(3)
-          NON-PROFIT, NON-RELIGIOUS, NON-POLITICAL organization established for
-          charitable and educational purposes.
+          <br />
+          Non-Profit, Non-Religious, Non-Political
+          <br />
+          organization established for charitable and educational purposes.
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">

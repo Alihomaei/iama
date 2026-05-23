@@ -54,7 +54,7 @@ const initialStats = [
   { label: "Countries Represented", value: "12" },
 ];
 
-const initialImages = ["/images/hero-1.jpg", "/images/hero-2.jpg"];
+const initialImages = ["/images/hero-1-v2.jpg", "/images/hero-2.jpg"];
 
 const initialPartners = [
   "UCLA Health",

@@ -81,7 +81,7 @@ src/
 └── middleware.ts
 public/
 ├── logo.png                  # official IAMA logo (used in the navbar)
-└── images/hero-1.jpg, hero-2.jpg   # homepage hero edge images
+└── images/hero-1-v2.jpg, hero-2.jpg   # homepage hero edge images
 supabase/migrations/          # SQL schema
 ```
 
@@ -150,9 +150,4 @@ project.
   in `src/lib/chapters.ts` and `src/lib/sections.ts`).
 - **Admin persistence:** wire `/admin/settings` and `/admin/content` to Supabase.
 - **Donation:** the page is UI-only; connect it to Stripe/PayPal.
-- **Hero left image:** may render rotated in some browsers due to an EXIF
-  orientation tag. Re-export upright and metadata-clean, e.g.
-  `magick assests/header_car_1.JPG -auto-orient -rotate 90 -strip -resize x1600 public/images/hero-1-v2.jpg`,
-  then point `leftImage` in `hero.tsx` at the new filename (a new name also
-  busts the image cache).
 - **Footer logo:** still shows the old “I” placeholder; swap for `/logo.png`.
