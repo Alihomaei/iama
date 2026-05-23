@@ -144,10 +144,21 @@ project.
 
 ## Status / TODO
 
-- **Sample content:** the newer pages (`/events`, `/community/*`,
-  `/opportunities/*`, `/donation`) ship with realistic **placeholder** content
-  meant as templates — replace with real copy/data (chapter & section data live
-  in `src/lib/chapters.ts` and `src/lib/sections.ts`).
+- **Real content:** copy and data across the homepage, `/about`, `/membership`,
+  `/congress`, `/events` (+ `annual-meeting`), `/community/*`, `/opportunities/*`,
+  `/news`, and `/donation` now reflect real IAMA information sourced from the
+  legacy site (iama.org) — leadership, the 30th Annual Meeting (Kimpton Hotel
+  Monaco, Washington, D.C., May 23–25, 2026), membership tiers, the four sections,
+  and contact/social details. Chapter & section data live in `src/lib/chapters.ts`
+  and `src/lib/sections.ts`; news card photos live in `public/images/news/`.
+- **Still illustrative / needs real data:** the `/education` CME catalog (the
+  legacy site is "Coming Soon"); per-chapter member counts and the chairs for the
+  Massachusetts, New Jersey, New York, and Ohio chapters (legacy site lists only
+  Arizona & California presidents); the homepage **Partners/affiliates** list; and
+  the program timelines / award tiers on `/opportunities/mentorship` and
+  `/opportunities/travel-grant`.
+- **News detail pages:** `/news/[slug]` article pages are not built yet, so the
+  "Read more" links currently have no destination.
 - **Admin persistence:** wire `/admin/settings` and `/admin/content` to Supabase.
-- **Donation:** the page is UI-only; connect it to Stripe/PayPal.
-- **Footer logo:** still shows the old “I” placeholder; swap for `/logo.png`.
+- **Donation:** the real PayPal giving link and check-by-mail address are wired;
+  the per-tier "Donate" buttons are still UI-only (connect to Stripe/PayPal).

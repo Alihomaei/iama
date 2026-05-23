@@ -79,17 +79,17 @@ export default function TravelGrantPage() {
             <div className="flex flex-wrap gap-6 text-sm text-muted">
               <span className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">Up to $1,500 per Recipient</strong>
+                <strong className="text-secondary">Travel Grants for Junior Members</strong>
               </span>
               <span className="flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">Spring Deadline: April 15, 2026</strong>
+                <strong className="text-secondary">Apply with Your Abstract (Due March 1)</strong>
               </span>
               <span className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">Two Award Cycles Per Year</strong>
+                <strong className="text-secondary">For the Annual Meeting</strong>
               </span>
-              <Badge variant="success">Spring Cycle Open</Badge>
+              <Badge variant="success">Now Accepting Applications</Badge>
             </div>
           </div>
         </section>
@@ -103,18 +103,15 @@ export default function TravelGrantPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-secondary mb-4">About the Grant</h2>
                   <p className="text-muted leading-relaxed mb-3">
-                    The IAMA Travel Grant was established in 2009 to remove financial barriers
-                    that prevent talented Iranian American medical trainees and early-career
-                    physicians from participating in national and international medical conferences.
-                    Presenting research, attending specialty meetings, and engaging in global
-                    health programs are critical to career advancement — and the Travel Grant
-                    makes those opportunities accessible.
+                    IAMA Awards recognize scientists for excellence in their respective fields —
+                    clinical research, treatment and prevention, experimental research, or
+                    promotion of their specialty. This includes travel grants for junior members
+                    attending the annual conference.
                   </p>
                   <p className="text-muted leading-relaxed">
-                    Each cycle, IAMA awards grants of up to $1,500 to cover registration fees,
-                    round-trip travel, and lodging. Recipients are selected by the IAMA
-                    Scholarship Committee based on merit, need, and the relevance of the
-                    proposed conference or program to the applicant's career.
+                    Junior members submitting an abstract for the Annual Meeting can also apply
+                    for a travel grant to support their attendance and presentation. The abstract
+                    submission deadline is March 1, 2026.
                   </p>
                 </div>
 
@@ -239,14 +236,15 @@ export default function TravelGrantPage() {
                 {/* Past winners note */}
                 <Card>
                   <CardContent className="p-5">
-                    <h3 className="font-semibold text-secondary mb-2">Past Recipients</h3>
+                    <h3 className="font-semibold text-secondary mb-2">Who It Supports</h3>
                     <p className="text-sm text-muted">
-                      IAMA has awarded over $180,000 in travel grants since 2009, supporting
-                      more than 200 recipients across 38 states and 15 countries.
+                      Travel grants help junior members attend the Annual Meeting and present
+                      their research. Members submitting an abstract can also apply for a
+                      travel grant.
                     </p>
                     <div className="mt-3 flex items-center gap-1.5 text-sm text-primary">
                       <Award className="h-4 w-4" />
-                      <span className="font-medium">200+ recipients and counting</span>
+                      <span className="font-medium">Supporting junior members</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -259,10 +257,10 @@ export default function TravelGrantPage() {
                       Reach the Scholarship Committee for application questions.
                     </p>
                     <a
-                      href="mailto:grants@iama.org"
+                      href="mailto:iama@iama.org"
                       className="text-sm text-primary hover:underline font-medium"
                     >
-                      grants@iama.org
+                      iama@iama.org
                     </a>
                   </CardContent>
                 </Card>

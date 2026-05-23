@@ -1,5 +1,25 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
+
+const socialLinks = [
+  { label: "X (Twitter)", short: "X", href: "https://x.com/IAMA_1993" },
+  {
+    label: "Facebook",
+    short: "Fb",
+    href: "https://www.facebook.com/IranianAmericanMedicalAssociation",
+  },
+  {
+    label: "Instagram",
+    short: "Ig",
+    href: "https://www.instagram.com/iranian_american_medical_assoc/",
+  },
+  {
+    label: "YouTube",
+    short: "Yt",
+    href: "https://www.youtube.com/channel/UCwsuL_Mk7yshLEFy3MgOsGg",
+  },
+];
 
 const aboutLinks = [
   { label: "Our Mission", href: "/about" },
@@ -30,9 +50,13 @@ export function Footer() {
           {/* About IAMA */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white font-bold text-sm">
-                I
-              </div>
+              <Image
+                src="/logo.png"
+                alt="IAMA logo"
+                width={32}
+                height={32}
+                className="h-8 w-8 rounded-lg object-contain"
+              />
               <span className="text-lg font-bold">IAMA</span>
             </div>
             <p className="text-sm text-gray-300 leading-relaxed mb-6">
@@ -41,15 +65,16 @@ export function Footer() {
               building among medical professionals.
             </p>
             <div className="flex gap-3">
-              {/* Social media placeholder icons */}
-              {["X", "Li", "Fb", "Ig"].map((icon) => (
+              {socialLinks.map((social) => (
                 <a
-                  key={icon}
-                  href="#"
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-xs font-medium text-gray-300 hover:bg-primary hover:text-white transition-colors"
-                  aria-label={icon}
+                  aria-label={social.label}
                 >
-                  {icon}
+                  {social.short}
                 </a>
               ))}
             </div>
@@ -101,24 +126,24 @@ export function Footer() {
             <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-2 text-sm text-gray-300">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary-light" />
-                <span>P.O. Box 1234, Beverly Hills, CA 90210</span>
+                <span>P.O. Box 8218, Haledon, NJ 07538</span>
               </li>
               <li>
                 <a
-                  href="mailto:info@iama.org"
+                  href="mailto:iama@iama.org"
                   className="flex items-center gap-2 text-sm text-gray-300 hover:text-primary-light transition-colors"
                 >
                   <Mail className="h-4 w-4 shrink-0 text-primary-light" />
-                  info@iama.org
+                  iama@iama.org
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+13105551234"
+                  href="tel:+19735958888"
                   className="flex items-center gap-2 text-sm text-gray-300 hover:text-primary-light transition-colors"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-primary-light" />
-                  (310) 555-1234
+                  (973) 595-8888
                 </a>
               </li>
             </ul>

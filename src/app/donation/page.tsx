@@ -131,7 +131,7 @@ export default function DonationPage() {
                 <strong className="text-secondary">
                   tax-deductible to the fullest extent permitted by law
                 </strong>
-                . EIN: 94-3201847. You will receive a donation receipt for your records.
+                . You will receive a donation receipt for your records.
               </span>
             </div>
           </div>
@@ -159,10 +159,10 @@ export default function DonationPage() {
                 </p>
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   {[
-                    { label: "Members Served", value: "2,500+" },
+                    { label: "Founded", value: "1993" },
+                    { label: "State Chapters", value: "6" },
+                    { label: "Specialty Sections", value: "4" },
                     { label: "Years of Service", value: "33" },
-                    { label: "States Represented", value: "42" },
-                    { label: "Travel Grants Awarded", value: "$180K+" },
                   ].map((stat) => (
                     <div
                       key={stat.label}
@@ -271,18 +271,22 @@ export default function DonationPage() {
             <div className="mt-8 flex flex-col sm:flex-row gap-4 items-start">
               <Card className="flex-1">
                 <CardContent className="p-5">
-                  <h3 className="font-semibold text-secondary mb-2">Custom Amount</h3>
+                  <h3 className="font-semibold text-secondary mb-2">Donate Online or by Mail</h3>
                   <p className="text-sm text-muted mb-3">
-                    Any amount is welcome and deeply appreciated. Enter a custom gift amount
-                    when you reach the donation portal.
+                    Give securely online via PayPal — any amount is welcome and deeply
+                    appreciated. Prefer to mail a check? Make it payable to &ldquo;IAMA&rdquo;
+                    (note &ldquo;IAMA&rdquo; on the memo line) and mail to: 16 Gregory Lane,
+                    Warren, NJ 07059.
                   </p>
-                  <button
-                    type="button"
+                  <a
+                    href="https://www.paypal.com/ncp/payment/DBX2YC334VSH4"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-semibold text-secondary hover:bg-gray-100 transition-colors"
                   >
                     <Heart className="h-4 w-4 text-primary" />
-                    Enter Custom Amount
-                  </button>
+                    Donate via PayPal
+                  </a>
                 </CardContent>
               </Card>
 
@@ -315,8 +319,8 @@ export default function DonationPage() {
                 </h2>
                 <p className="text-muted text-sm leading-relaxed max-w-2xl">
                   The Iranian American Medical Association is recognized by the IRS as a
-                  tax-exempt organization under Section 501(c)(3) of the Internal Revenue Code
-                  (EIN: 94-3201847). Contributions are tax-deductible to the fullest extent
+                  tax-exempt organization under Section 501(c)(3) of the Internal Revenue Code.
+                  Contributions are tax-deductible to the fullest extent
                   permitted by applicable law. Upon completing your donation, you will receive
                   an electronic receipt confirming the amount and date of your contribution for
                   use in preparing your federal and state tax returns. Please retain this
@@ -360,8 +364,8 @@ export default function DonationPage() {
             </div>
             <p className="mt-6 text-sm text-muted">
               For questions about giving, contact us at{" "}
-              <a href="mailto:giving@iama.org" className="text-primary hover:underline font-medium">
-                giving@iama.org
+              <a href="mailto:iama@iama.org" className="text-primary hover:underline font-medium">
+                iama@iama.org
               </a>
             </p>
           </div>

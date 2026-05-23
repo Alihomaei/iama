@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { Users, MapPin, Calendar, Globe } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: 1000, suffix: "+", label: "Active Members" },
-  { icon: MapPin, value: 25, suffix: "", label: "Regional Chapters" },
-  { icon: Calendar, value: 40, suffix: "+", label: "Annual Events" },
-  { icon: Globe, value: 12, suffix: "", label: "Countries Represented" },
+  { icon: Calendar, value: 30, suffix: "th", label: "Annual Meeting" },
+  { icon: MapPin, value: 6, suffix: "", label: "State Chapters" },
+  { icon: Globe, value: 4, suffix: "", label: "Specialty Sections" },
+  { icon: Users, value: 33, suffix: "", label: "Years of Service" },
 ];
 
 function AnimatedCounter({

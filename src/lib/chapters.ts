@@ -25,11 +25,11 @@ export const chapters: Chapter[] = [
     blurb:
       "The Arizona Chapter serves Iranian American physicians throughout the Phoenix metropolitan area and southern Arizona, fostering professional development and community engagement in one of the fastest-growing healthcare markets in the Southwest.",
     chair: {
-      name: "Dr. Farshid Nourbakhsh",
-      title: "MD, FACP — Internal Medicine, Mayo Clinic Arizona",
+      name: "Dr. Reza Movahed",
+      title: "MD, PhD — Arizona Chapter President",
     },
     memberCount: 78,
-    email: "arizona@iama.org",
+    email: "iama@iama.org",
     activities: [
       {
         title: "Annual Desert Medicine Symposium",
@@ -55,11 +55,11 @@ export const chapters: Chapter[] = [
     blurb:
       "The California Chapter is the largest IAMA chapter, representing thousands of Iranian American medical professionals across the state. With chapters in Southern and Northern California, members benefit from a rich network of academic medical centers, private practices, and research institutions.",
     chair: {
-      name: "Dr. Shirin Mostaghim",
-      title: "MD, PhD — Cardiology, UCLA Health",
+      name: "Dr. Amir Quorbani",
+      title: "MD — California Chapter President",
     },
     memberCount: 412,
-    email: "california@iama.org",
+    email: "iama@iama.org",
     activities: [
       {
         title: "Nowruz Physicians Gala",
@@ -85,11 +85,11 @@ export const chapters: Chapter[] = [
     blurb:
       "The Massachusetts Chapter thrives within one of the world's premier biomedical ecosystems. Members are affiliated with Harvard, MGH, Brigham and Women's, Boston Medical Center, and other leading institutions, creating exceptional opportunities for collaboration and professional growth.",
     chair: {
-      name: "Dr. Parisa Sadeghi",
-      title: "MD, MPH — Infectious Disease, Massachusetts General Hospital",
+      name: "Chapter Leadership",
+      title: "Contact iama@iama.org to connect with chapter leadership",
     },
     memberCount: 134,
-    email: "massachusetts@iama.org",
+    email: "iama@iama.org",
     activities: [
       {
         title: "Boston Medical Grand Rounds Collaboration",
@@ -115,11 +115,11 @@ export const chapters: Chapter[] = [
     blurb:
       "The New Jersey Chapter serves a vibrant and rapidly growing community of Iranian American physicians across the Garden State, with strong representation in both academic medical centers affiliated with Rutgers and NYU, and in thriving independent practices.",
     chair: {
-      name: "Dr. Kamran Tehrani",
-      title: "MD — Gastroenterology, Rutgers New Jersey Medical School",
+      name: "Chapter Leadership",
+      title: "Contact iama@iama.org to connect with chapter leadership",
     },
     memberCount: 96,
-    email: "newjersey@iama.org",
+    email: "iama@iama.org",
     activities: [
       {
         title: "Spring CME Workshop Series",
@@ -145,11 +145,11 @@ export const chapters: Chapter[] = [
     blurb:
       "The New York Chapter is one of IAMA's most active chapters, rooted in the dense concentration of world-class hospitals and research institutions across New York City and greater New York State. Members represent every medical specialty and include leading researchers, clinicians, and educators.",
     chair: {
-      name: "Dr. Nasrin Afshari",
-      title: "MD, FACS — Ophthalmology & Vision Science, NYU Langone Health",
+      name: "Chapter Leadership",
+      title: "Contact iama@iama.org to connect with chapter leadership",
     },
     memberCount: 287,
-    email: "newyork@iama.org",
+    email: "iama@iama.org",
     activities: [
       {
         title: "Annual Persian Night at the Met",
@@ -175,11 +175,11 @@ export const chapters: Chapter[] = [
     blurb:
       "The Ohio Chapter serves Iranian American physicians across the Midwest's medical heartland. With world-renowned institutions like Cleveland Clinic and Ohio State Wexner Medical Center, Ohio chapter members are at the forefront of clinical care and translational research.",
     chair: {
-      name: "Dr. Mehrdad Jafari",
-      title: "MD — Oncology, Cleveland Clinic",
+      name: "Chapter Leadership",
+      title: "Contact iama@iama.org to connect with chapter leadership",
     },
     memberCount: 62,
-    email: "ohio@iama.org",
+    email: "iama@iama.org",
     activities: [
       {
         title: "Midwest IAMA CME Day",

@@ -1,34 +1,38 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const newsPosts = [
   {
     id: "1",
-    title: "IAMA Announces Partnership with Johns Hopkins for Research Initiative",
+    title: "30 Years of IAMA. One Future for Med-Tech.",
     excerpt:
-      "A groundbreaking collaboration to advance medical research and training for Iranian American physicians across the nation.",
-    date: "March 28, 2026",
-    category: "Partnerships",
-    slug: "iama-johns-hopkins-partnership",
+      "Led by Dr. Ehsan Vaghefi and team, the Shark Tank–style innovation program returns at the 30th Annual IAMA Meeting.",
+    date: "February 3, 2026",
+    category: "Community",
+    slug: "shark-tank-30th-annual-meeting",
+    image: "/images/news/shark-tank.jpg",
   },
   {
     id: "2",
-    title: "Call for Abstracts: Annual Congress 2026 Now Open",
+    title: "Join Your Colleagues at the 30th Annual Meeting",
     excerpt:
-      "Submit your research abstracts for oral and poster presentations at this year's premier gathering of Iranian American medical professionals.",
-    date: "March 15, 2026",
-    category: "Congress",
-    slug: "call-for-abstracts-2026",
+      "Kimpton Hotel Monaco, Washington, D.C. Reserve your room at the discounted rate for attendees and register today.",
+    date: "June 9, 2025",
+    category: "Community",
+    slug: "join-30th-annual-meeting",
+    image: "/images/news/annual-meeting-balloons.jpg",
   },
   {
     id: "3",
-    title: "IAMA Members Recognized in Top Physicians List 2026",
+    title: "Call for Abstracts!",
     excerpt:
-      "Over 50 IAMA members have been recognized across multiple specialties in this year's national physician rankings.",
-    date: "March 5, 2026",
-    category: "Recognition",
-    slug: "top-physicians-2026",
+      "Abstract submissions are open with a deadline of March 1, 2026. Junior members submitting abstracts can also apply for a travel grant.",
+    date: "June 9, 2025",
+    category: "Community",
+    slug: "call-for-abstracts",
+    image: "/images/news/call-for-abstracts.jpg",
   },
 ];
 
@@ -60,11 +64,14 @@ export function LatestNews() {
               key={post.id}
               className="group hover:shadow-md transition-shadow"
             >
-              {/* Image placeholder */}
-              <div className="aspect-[16/9] rounded-t-xl bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center">
-                <span className="text-4xl font-bold text-primary/20">
-                  IAMA
-                </span>
+              <div className="relative aspect-[16/9] overflow-hidden rounded-t-xl bg-primary-50">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
               </div>
               <CardContent className="p-5">
                 <div className="flex items-center gap-3 mb-3">

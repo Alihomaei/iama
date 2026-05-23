@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageHeader } from "@/components/layout/page-header";
@@ -15,84 +16,53 @@ export const metadata: Metadata = {
 const allNews = [
   {
     id: "1",
-    title: "IAMA Announces Partnership with Johns Hopkins for Research Initiative",
+    title: "30 Years of IAMA. One Future for Med-Tech.",
     excerpt:
-      "A groundbreaking collaboration to advance medical research and training for Iranian American physicians across the nation.",
-    date: "March 28, 2026",
-    category: "Partnerships",
-    slug: "iama-johns-hopkins-partnership",
+      "Led by Dr. Ehsan Vaghefi and team, the Shark Tank–style innovation program returns at the 30th Annual IAMA Meeting.",
+    date: "February 3, 2026",
+    category: "Community",
+    slug: "shark-tank-30th-annual-meeting",
+    image: "/images/news/shark-tank.jpg",
   },
   {
     id: "2",
-    title: "Call for Abstracts: Annual Congress 2026 Now Open",
+    title: "IAMA Letter of Statement",
     excerpt:
-      "Submit your research abstracts for oral and poster presentations at this year's premier gathering of Iranian American medical professionals.",
-    date: "March 15, 2026",
-    category: "Congress",
-    slug: "call-for-abstracts-2026",
+      "A statement from the Iranian American Medical Association to its members and community.",
+    date: "January 24, 2026",
+    category: "Community",
+    slug: "iama-letter-of-statement",
+    image: "/images/news/healthcare-workers.jpg",
   },
   {
     id: "3",
-    title: "IAMA Members Recognized in Top Physicians List 2026",
+    title: "Join Your Colleagues at the 30th Annual Meeting",
     excerpt:
-      "Over 50 IAMA members have been recognized across multiple specialties in this year's national physician rankings.",
-    date: "March 5, 2026",
-    category: "Recognition",
-    slug: "top-physicians-2026",
+      "Kimpton Hotel Monaco, Washington, D.C. Reserve your room at the discounted rate for attendees and register today.",
+    date: "June 9, 2025",
+    category: "Community",
+    slug: "join-30th-annual-meeting",
+    image: "/images/news/annual-meeting-balloons.jpg",
   },
   {
     id: "4",
-    title: "New CME Program Launched: Advances in Telehealth",
+    title: "Call for Abstracts!",
     excerpt:
-      "IAMA's latest continuing medical education series covers best practices, regulations, and technology for virtual patient care.",
-    date: "February 20, 2026",
-    category: "Education",
-    slug: "cme-telehealth-2026",
+      "Abstract submissions are open with a deadline of March 1, 2026. Junior members submitting abstracts can also apply for a travel grant.",
+    date: "June 9, 2025",
+    category: "Community",
+    slug: "call-for-abstracts",
+    image: "/images/news/call-for-abstracts.jpg",
   },
   {
     id: "5",
-    title: "IAMA Advocacy Update: Healthcare Policy Priorities for 2026",
+    title: "30th Annual Meeting",
     excerpt:
-      "Our advocacy committee outlines key legislative priorities including physician reimbursement, immigration reform for medical professionals, and research funding.",
-    date: "February 10, 2026",
-    category: "Advocacy",
-    slug: "advocacy-priorities-2026",
-  },
-  {
-    id: "6",
-    title: "Young Physicians Forum: Mentorship Program Results",
-    excerpt:
-      "First-year results of the mentorship program show significant career development outcomes for residents and early-career physicians.",
-    date: "January 30, 2026",
+      "Annual Meeting in Washington, D.C., May 23–25, 2026. Make your reservations at the Kimpton Hotel Monaco.",
+    date: "June 9, 2025",
     category: "Community",
-    slug: "mentorship-results-2026",
-  },
-  {
-    id: "7",
-    title: "IAMA Annual Report 2025: A Year of Growth",
-    excerpt:
-      "Our annual report highlights membership growth, educational achievements, research grants, and community impact over the past year.",
-    date: "January 15, 2026",
-    category: "Organization",
-    slug: "annual-report-2025",
-  },
-  {
-    id: "8",
-    title: "Disaster Relief: IAMA Medical Teams Respond to Earthquake",
-    excerpt:
-      "IAMA mobilized volunteer medical teams and raised $500,000 in humanitarian aid following the devastating earthquake in the region.",
-    date: "January 5, 2026",
-    category: "Humanitarian",
-    slug: "earthquake-relief-2026",
-  },
-  {
-    id: "9",
-    title: "New Chapter Established in Houston, Texas",
-    excerpt:
-      "IAMA's 25th regional chapter brings together physicians and medical professionals in the greater Houston metropolitan area.",
-    date: "December 18, 2025",
-    category: "Chapters",
-    slug: "houston-chapter-2025",
+    slug: "30th-annual-meeting",
+    image: "/images/news/dc-annual-meeting.jpg",
   },
 ];
 
@@ -115,11 +85,14 @@ export default function NewsPage() {
                   key={post.id}
                   className="group hover:shadow-md transition-shadow"
                 >
-                  {/* Image placeholder */}
-                  <div className="aspect-[16/9] rounded-t-xl bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center">
-                    <span className="text-3xl font-bold text-primary/20">
-                      IAMA
-                    </span>
+                  <div className="relative aspect-[16/9] overflow-hidden rounded-t-xl bg-primary-50">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
                   </div>
                   <CardContent className="p-5">
                     <div className="flex items-center gap-3 mb-3">

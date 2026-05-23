@@ -10,34 +10,38 @@ import {
 
 const benefits = [
   {
-    icon: BookOpen,
-    title: "CME Programs",
-    description: "Access accredited continuing medical education courses",
-  },
-  {
     icon: Users,
     title: "Networking",
-    description: "Connect with leading physicians and researchers",
-  },
-  {
-    icon: Award,
-    title: "Recognition",
-    description: "Awards and fellowships for outstanding contributions",
-  },
-  {
-    icon: Globe,
-    title: "Global Impact",
-    description: "Participate in international health initiatives",
+    description:
+      "Connect with clinicians, research scientists, and allied health professionals across specialties",
   },
   {
     icon: Ticket,
-    title: "Congress Discounts",
-    description: "Reduced rates for all IAMA events and conferences",
+    title: "Meeting Discounts",
+    description:
+      "Discounted registration at the Annual Meeting and monthly public awareness seminars",
+  },
+  {
+    icon: Globe,
+    title: "Voting Rights",
+    description:
+      "Vote and stand for election to the Executive Committee and section and chapter boards",
+  },
+  {
+    icon: Award,
+    title: "Travel Grants & Awards",
+    description:
+      "Eligibility for travel grants and recognition awards for junior and senior members",
+  },
+  {
+    icon: BookOpen,
+    title: "Educational Material",
+    description: "Access to webinars and monthly lectures posted online",
   },
   {
     icon: FileText,
-    title: "Publications",
-    description: "Exclusive access to research journals and newsletters",
+    title: "Job Board",
+    description: "Post and access job opportunities shared with the membership",
   },
 ];
 
@@ -90,7 +94,7 @@ export function MembershipCTA() {
             View Membership Plans
           </Link>
           <p className="mt-4 text-sm text-primary-200">
-            Student memberships start at just $50/year
+            Pre-residency membership is free — annual dues start at just $50
           </p>
         </div>
       </div>

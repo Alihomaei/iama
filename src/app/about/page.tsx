@@ -13,71 +13,104 @@ export const metadata: Metadata = {
 
 const leadership = [
   {
-    name: "Dr. Reza Ahmadi",
+    name: "Dr. Freidoon Ghazi",
     title: "President",
-    institution: "UCLA Medical Center",
-    specialty: "Cardiology",
+    institution: "MD",
+    specialty: "Executive Committee",
   },
   {
-    name: "Dr. Sara Mohammadi",
+    name: "Dr. Payam Torrei",
     title: "Vice President",
-    institution: "Johns Hopkins Hospital",
-    specialty: "Oncology",
+    institution: "MD",
+    specialty: "Executive Committee",
   },
   {
-    name: "Dr. Kaveh Nasseri",
-    title: "Secretary General",
-    institution: "Mayo Clinic",
-    specialty: "Neurology",
-  },
-  {
-    name: "Dr. Mina Karimi",
+    name: "Dr. Mohammad Sarraf",
     title: "Treasurer",
-    institution: "Stanford Health Care",
-    specialty: "Internal Medicine",
+    institution: "MD",
+    specialty: "Executive Committee",
   },
   {
-    name: "Dr. Amir Hosseini",
-    title: "Chair, Education Committee",
-    institution: "Cleveland Clinic",
-    specialty: "Surgery",
+    name: "Dr. Hale Yarmohammadi",
+    title: "Corresponding Secretary",
+    institution: "MD, MPH",
+    specialty: "Executive Committee",
   },
   {
-    name: "Dr. Leila Tehrani",
-    title: "Chair, Research Committee",
-    institution: "Cedars-Sinai Medical Center",
-    specialty: "Pathology",
+    name: "Dr. Hossein Ali Shahidi",
+    title: "Membership Committee Chair",
+    institution: "MD",
+    specialty: "Membership Committee",
+  },
+  {
+    name: "Dr. Nooshin Hashemzadeh",
+    title: "Scientific Chair",
+    institution: "PhD",
+    specialty: "Scientific Committee",
+  },
+  {
+    name: "Dr. Padideh Alizadeh",
+    title: "Dental Division Chair",
+    institution: "DMD",
+    specialty: "Dental Section",
+  },
+  {
+    name: "Dr. Reza Movahed",
+    title: "Arizona Chapter President",
+    institution: "MD, PhD",
+    specialty: "Arizona Chapter",
+  },
+  {
+    name: "Dr. Amir Quorbani",
+    title: "California Chapter President",
+    institution: "MD",
+    specialty: "California Chapter",
+  },
+  {
+    name: "Dr. Danesh Mazloomdoost",
+    title: "Member at Large",
+    institution: "MD",
+    specialty: "Board of Directors",
+  },
+  {
+    name: "Dr. Arash Dabestani",
+    title: "Advisor",
+    institution: "PharmD",
+    specialty: "Advisory",
+  },
+  {
+    name: "Dr. Sohrab Fallahi",
+    title: "Advisor",
+    institution: "MD",
+    specialty: "Advisory",
   },
 ];
 
 const milestones = [
   {
-    year: "1995",
-    event: "IAMA founded by a group of Iranian American physicians in Los Angeles",
+    year: "1982",
+    event:
+      "The Society of Iranian Psychiatrists of North America (SIPNA) is founded by Dr. Iraj Siassi — later joining IAMA as its Psychiatry section.",
   },
   {
-    year: "2000",
-    event: "First Annual Congress held in Beverly Hills with 150 attendees",
+    year: "1993",
+    event:
+      "IAMA is founded by a group of seven Iranian American physicians as a scientific, non-profit, non-religious, and non-political professional association.",
   },
   {
-    year: "2005",
-    event: "Membership exceeds 1,000; first international chapter established",
+    year: "2003",
+    event:
+      "Following the Bam earthquake, IAMA helps establish the IAMA Medical Center in Bam, Iran, supporting relief and care.",
   },
   {
-    year: "2010",
-    event: "Launch of CME accreditation program and quarterly journal",
+    year: "Today",
+    event:
+      "IAMA serves members through six state chapters and four specialty sections — Javaan, SIPNA, SUSMA, and Dental — hosting annual conferences with AMA-CME credits.",
   },
   {
-    year: "2015",
-    event: "Partnership with major academic medical centers for research grants",
-  },
-  {
-    year: "2020",
-    event: "Transition to hybrid events; member-led COVID-19 response initiative",
-  },
-  {
-    year: "2024",
-    event: "3,500+ active members across 25 chapters and 12 countries",
+    year: "2026",
+    event:
+      "The 30th IAMA Annual Meeting convenes in Washington, D.C. at the Kimpton Hotel Monaco, May 23–25.",
   },
 ];
 
@@ -88,7 +121,7 @@ export default function AboutPage() {
       <main>
         <PageHeader
           title="About IAMA"
-          subtitle="Dedicated to advancing healthcare excellence through education, advocacy, and community since 1995."
+          subtitle="A scientific, non-profit, non-religious, and non-political association advancing education, health, and community among Iranian American medical professionals since 1993."
           breadcrumbs={[{ label: "About" }]}
         />
 
@@ -100,22 +133,22 @@ export default function AboutPage() {
                 {
                   icon: Target,
                   title: "Our Mission",
-                  text: "To advance the practice of medicine, promote health education, and foster professional development among Iranian American medical professionals and their communities.",
+                  text: "IAMA is a 501(c)(3) non-profit organization established for charitable and educational purposes — providing financial assistance to medical students and healthcare support to underserved communities.",
                 },
                 {
                   icon: Eye,
                   title: "Our Vision",
-                  text: "A world where Iranian American physicians lead in clinical excellence, groundbreaking research, and compassionate patient care, bridging cultures and advancing global health.",
+                  text: "To unite Iranian medical professionals across the United States so they can support one another and advance education, health, communication, and medical research.",
                 },
                 {
                   icon: Heart,
                   title: "Our Values",
-                  text: "Excellence, integrity, collaboration, cultural heritage, service, and innovation guide every aspect of our organization and programs.",
+                  text: "IAMA is a scientific, non-profit, non-religious, non-political, and professional association — open to all and driven by service.",
                 },
                 {
                   icon: Award,
                   title: "Our Impact",
-                  text: "With over 3,500 members, 25 chapters, and 40+ annual events, IAMA is the premier professional organization for Iranian American medical professionals.",
+                  text: "Six state chapters, four specialty sections, three decades of annual CME conferences, and the IAMA Medical Center established in Bam, Iran.",
                 },
               ].map((item) => {
                 const Icon = item.icon;
@@ -238,27 +271,27 @@ export default function AboutPage() {
               <div className="rounded-xl bg-white p-6 shadow-sm">
                 <p className="font-semibold text-secondary">Email</p>
                 <a
-                  href="mailto:info@iama.org"
+                  href="mailto:iama@iama.org"
                   className="mt-1 text-sm text-primary hover:text-primary-dark"
                 >
-                  info@iama.org
+                  iama@iama.org
                 </a>
               </div>
               <div className="rounded-xl bg-white p-6 shadow-sm">
                 <p className="font-semibold text-secondary">Phone</p>
                 <a
-                  href="tel:+13105551234"
+                  href="tel:+19735958888"
                   className="mt-1 text-sm text-primary hover:text-primary-dark"
                 >
-                  (310) 555-1234
+                  (973) 595-8888
                 </a>
               </div>
               <div className="rounded-xl bg-white p-6 shadow-sm">
                 <p className="font-semibold text-secondary">Address</p>
                 <p className="mt-1 text-sm text-muted">
-                  P.O. Box 1234
+                  P.O. Box 8218
                   <br />
-                  Beverly Hills, CA 90210
+                  Haledon, NJ 07538
                 </p>
               </div>
             </div>

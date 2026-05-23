@@ -83,17 +83,17 @@ export default function MentorshipPage() {
             <div className="flex flex-wrap gap-6 text-sm text-muted">
               <span className="flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">Applications due May 31, 2026</strong>
+                <strong className="text-secondary">For Junior (JAVAAN) Members</strong>
               </span>
               <span className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">6-Month Structured Program</strong>
+                <strong className="text-secondary">Knowledge Transfer &amp; Guidance</strong>
               </span>
               <span className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">Open to All IAMA Members</strong>
+                <strong className="text-secondary">Open to IAMA Members</strong>
               </span>
-              <Badge variant="success">Applications Open</Badge>
+              <Badge variant="success">Now Welcoming Mentees</Badge>
             </div>
           </div>
         </section>
@@ -107,16 +107,15 @@ export default function MentorshipPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-secondary mb-4">About the Program</h2>
                   <p className="text-muted leading-relaxed mb-3">
-                    The IAMA Mentorship Program was established in 2012 to address a critical need:
-                    Iranian American medical trainees and early-career physicians often lack access
-                    to mentors who understand both the professional landscape of American medicine
-                    and the cultural context in which they practice. Our program bridges that gap.
+                    IAMA&apos;s Junior Members Mentorship Program aims to promote ongoing
+                    educational and professional opportunities for young scientists and to
+                    enhance junior members&apos; capacity as professionals.
                   </p>
                   <p className="text-muted leading-relaxed">
-                    Over six months, each mentee is paired with an experienced IAMA physician
-                    mentor who provides career guidance, clinical insights, professional networking
-                    support, and personal encouragement. The program accommodates mentors and
-                    mentees across all 50 states, with sessions conducted virtually for flexibility.
+                    The program improves the transfer of knowledge from experienced professionals
+                    to juniors and increases junior members&apos; appreciation of, and orientation
+                    within, their field. Each mentee is paired with an experienced IAMA physician
+                    mentor for career guidance, clinical insight, and professional networking.
                   </p>
                 </div>
 
@@ -197,8 +196,8 @@ export default function MentorshipPage() {
                   <CardContent className="p-5">
                     <h3 className="font-semibold text-secondary mb-2">Apply Now</h3>
                     <p className="text-sm text-muted mb-4">
-                      Applications for Cycle 2 (Fall 2026) are now open. You must be an
-                      IAMA member to apply.
+                      Junior members can join the Mentorship Program. You must be an IAMA
+                      member to participate.
                     </p>
                     <Link
                       href="/auth/signup"
@@ -241,10 +240,10 @@ export default function MentorshipPage() {
                       Contact the Mentorship Committee for program inquiries.
                     </p>
                     <a
-                      href="mailto:mentorship@iama.org"
+                      href="mailto:iama@iama.org"
                       className="text-sm text-primary hover:underline font-medium"
                     >
-                      mentorship@iama.org
+                      iama@iama.org
                     </a>
                   </CardContent>
                 </Card>

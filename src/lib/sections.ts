@@ -20,118 +20,118 @@ export const sections: Section[] = [
   {
     slug: "javaan",
     name: "JAVAAN (Juniors)",
-    focus: "Young Professionals & Early-Career Physicians",
+    focus: "Junior & Early-Career Members",
     blurb:
-      "JAVAAN — which means 'youth' in Persian — is IAMA's section for early-career physicians, including those within the first ten years of completing residency or fellowship. JAVAAN members access dedicated mentorship, leadership development tracks, and a vibrant peer network across the country. The section is committed to ensuring the next generation of Iranian American physicians are equipped to lead and innovate in medicine.",
+      "JAVAAN — which means 'youth' in Persian — is IAMA's section for junior members. Junior members connect with their peers, voice their needs, and network to identify their interests and the medical areas they would like to focus on. The section is committed to supporting the next generation of Iranian American physicians and trainees. Vice President: Dr. Alireza Farazpey, DDS.",
     lead: {
-      name: "Dr. Dina Rahimi",
-      title: "MD — Family Medicine, Year 3 Attending, Northwestern Medicine",
+      name: "Dr. Niloufar Salehi",
+      title: "MD — President, JAVAAN (Junior Members)",
     },
     activities: [
       {
-        title: "JAVAAN Leadership Academy",
+        title: "Peer Networking",
         description:
-          "A competitive six-month program pairing selected early-career physicians with senior IAMA leaders for structured mentorship and a capstone leadership project.",
+          "Opportunities for junior members to connect with peers and build a national community within IAMA.",
       },
       {
-        title: "Annual Young Physicians Symposium",
+        title: "Mentorship & Guidance",
         description:
-          "A national one-day virtual conference exclusively for JAVAAN members, featuring career panels, wellness workshops, and a networking mixer.",
+          "Connecting junior members with experienced IAMA physicians for career guidance through the Mentorship Program.",
       },
       {
-        title: "Monthly Career Coffee Chats",
+        title: "Career Exploration",
         description:
-          "Informal 45-minute virtual sessions where early-career members connect with a featured senior physician from a different specialty.",
+          "Helping members identify their interests and the medical areas they would like to focus on.",
       },
     ],
-    email: "javaan@iama.org",
+    email: "iama@iama.org",
   },
   {
     slug: "psychiatry",
-    name: "Psychiatry",
-    focus: "Mental Health, Psychiatry & Behavioral Medicine",
+    name: "Psychiatry (SIPNA)",
+    focus: "Mental Health & Psychiatry",
     blurb:
-      "The Psychiatry Section brings together Iranian American psychiatrists, psychologists, and mental health professionals to advance culturally competent mental healthcare for Iranian and Iranian American communities. The section advocates for reducing stigma, increasing access to care, and training the next generation of culturally sensitive mental health providers.",
+      "SIPNA — the Society of Iranian Psychiatrists of North America — is a professional, non-profit, non-political organization founded in 1982 by Dr. Iraj Siassi. As IAMA's Psychiatry section, SIPNA promotes, generates, and disseminates scholarly information and research on psychiatry and related fields among mental health professionals of Iranian origin. Learn more at sipna.net.",
     lead: {
-      name: "Dr. Azadeh Modarresi",
-      title: "MD — Psychiatry & Psychoanalysis, Columbia University Medical Center",
+      name: "Dr. Morteza Nadjafi",
+      title: "MD — President, SIPNA",
     },
     activities: [
       {
-        title: "Cultural Competency in Psychiatry Workshop",
+        title: "Scholarly Research & Dissemination",
         description:
-          "An annual CME workshop on culturally adapted therapeutic approaches for patients of Middle Eastern and Iranian descent.",
+          "Promoting, generating, and sharing research on psychiatry and related fields among mental health professionals of Iranian origin.",
       },
       {
-        title: "Stigma Reduction Community Campaign",
+        title: "Professional Network",
         description:
-          "An outreach campaign in partnership with Persian-language media to normalize mental health care in Iranian American communities.",
+          "Connecting Iranian psychiatrists and mental health professionals across North America.",
       },
       {
-        title: "Psychiatric Residency Mentorship",
+        title: "Continuing Education",
         description:
-          "A mentorship program connecting Iranian American medical students and residents interested in psychiatry with attending psychiatrists.",
+          "Educational programming and collaboration in psychiatry and behavioral medicine.",
       },
     ],
-    email: "psychiatry@iama.org",
+    email: "iama@iama.org",
   },
   {
     slug: "susma",
     name: "SUSMA",
-    focus: "Medical Students & Residents",
+    focus: "Shiraz University School of Medicine Alumni",
     blurb:
-      "SUSMA — the Student and Resident Section of IAMA — is the home for Iranian American medical students, interns, and residents across the United States. SUSMA provides academic support, USMLE resources, match preparation guidance, and a national community for those in training. The section collaborates closely with JAVAAN to ensure a smooth transition into early-career practice.",
+      "SUSMA is the Shiraz University School of Medicine Alumni section of IAMA. Graduates of Shiraz Medical School formed a society spanning members across 32 states. At its height the alumni network counted up to 700 members, gathering at yearly conferences for networking and continuing medical education (CME). As an IAMA section, SUSMA continues to connect Shiraz Medical School alumni and support their professional community in North America.",
     lead: {
-      name: "Dr. Arash Maddahi",
-      title: "MD/PhD Candidate — Internal Medicine Resident, Johns Hopkins Hospital",
+      name: "Dr. Jasmin Moshirpur",
+      title: "MD — President, SUSMA",
     },
     activities: [
       {
-        title: "Match Day Preparation Bootcamp",
+        title: "Annual Alumni Conference",
         description:
-          "An intensive virtual bootcamp each fall to help medical students optimize their residency applications, personal statements, and interview skills.",
+          "A yearly gathering of Shiraz Medical School alumni for networking and continuing medical education (CME).",
       },
       {
-        title: "USMLE Study Group Network",
+        title: "Nationwide Alumni Network",
         description:
-          "A nationwide virtual peer study group network for Step 1, Step 2, and Step 3 preparation, moderated by senior residents.",
+          "Connecting graduates across more than 32 states to maintain professional and personal ties.",
       },
       {
-        title: "Annual Research Poster Competition",
+        title: "Continuing Medical Education",
         description:
-          "A national competition for SUSMA members to present original research, case reports, and quality improvement projects, with winners recognized at the Annual Meeting.",
+          "CME programming offered through alumni conferences and IAMA's scientific activities.",
       },
     ],
-    email: "susma@iama.org",
+    email: "iama@iama.org",
   },
   {
     slug: "dental",
     name: "Dental",
     focus: "Dentistry & Oral Health",
     blurb:
-      "The Dental Section unites Iranian American dentists, oral surgeons, orthodontists, and dental specialists across the United States. The section promotes excellence in oral healthcare, advocates for the integration of dental and systemic medicine, and fosters connections between dentists and physician members of IAMA to advance whole-patient care models.",
+      "The Dental Section unites Iranian American dentists, oral surgeons, orthodontists, and dental specialists across the United States. As an IAMA section, it promotes excellence in oral healthcare and fosters connections between dental and physician members of IAMA to advance whole-patient care.",
     lead: {
-      name: "Dr. Shahrzad Kiani",
-      title: "DDS, MS — Periodontics & Implantology, University of Michigan School of Dentistry",
+      name: "Dr. Padideh Alizadeh",
+      title: "DMD — Dental Division Chair",
     },
     activities: [
       {
-        title: "Oral-Systemic Health Symposium",
+        title: "Oral-Systemic Health Education",
         description:
-          "An annual continuing education event exploring the connections between oral health and conditions such as diabetes, cardiovascular disease, and pregnancy complications.",
+          "Continuing education connecting oral health with overall medical care and chronic disease.",
       },
       {
-        title: "Community Dental Outreach Day",
+        title: "Community Outreach",
         description:
-          "Volunteer dental clinics providing free oral health screenings and education to underserved Iranian and immigrant communities.",
+          "Oral health screenings and education for underserved communities.",
       },
       {
-        title: "Dental Student Mentorship Circle",
+        title: "Professional Network",
         description:
-          "A mentorship program connecting Iranian American dental students with licensed practitioners for career guidance and specialty exploration.",
+          "Connecting dental professionals with physician members within the IAMA community.",
       },
     ],
-    email: "dental@iama.org",
+    email: "iama@iama.org",
   },
 ];
 

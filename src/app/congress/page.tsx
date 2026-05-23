@@ -15,31 +15,31 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Annual Congress 2026",
+  title: "30th Annual Meeting 2026",
   description:
-    "Join the IAMA Annual Congress 2026 in Los Angeles. Three days of medical education, research presentations, and networking.",
+    "Join the IAMA 30th Annual Meeting at the Kimpton Hotel Monaco in Washington, D.C., May 23–25, 2026. CME sessions, research presentations, and the Gala Dinner.",
 };
 
 const highlights = [
   {
     icon: Mic2,
-    title: "50+ Speakers",
-    description: "Leading experts across multiple specialties",
+    title: "Scientific Program",
+    description: "Keynotes and panels with leaders across specialties",
   },
   {
     icon: FileText,
-    title: "200+ Abstracts",
-    description: "Oral and poster presentations of latest research",
+    title: "Abstract Presentations",
+    description: "Oral and poster research; travel grants for juniors",
   },
   {
     icon: Users,
-    title: "500+ Attendees",
-    description: "Physicians, researchers, and medical professionals",
+    title: "Networking",
+    description: "Physicians, residents, students, and researchers",
   },
   {
     icon: Clock,
-    title: "20+ CME Credits",
-    description: "Accredited continuing medical education hours",
+    title: "AMA-CME Credits",
+    description: "Accredited continuing medical education",
   },
 ];
 
@@ -64,26 +64,26 @@ export default function CongressPage() {
           <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
             <div className="max-w-3xl">
               <span className="mb-4 inline-flex items-center rounded-full bg-accent/20 px-4 py-1 text-sm font-medium text-accent">
-                October 16-18, 2026
+                May 23–25, 2026
               </span>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                IAMA Annual{" "}
-                <span className="text-primary-light">Congress 2026</span>
+                IAMA 30th{" "}
+                <span className="text-primary-light">Annual Meeting</span>
               </h1>
               <p className="mt-6 text-lg text-primary-100 leading-relaxed max-w-2xl">
-                Join over 500 physicians, researchers, and medical professionals
-                for three transformative days of cutting-edge education,
-                groundbreaking research, and meaningful connections.
+                Thirty years of IAMA. Join physicians, researchers, residents,
+                and students in Washington, D.C. for three days of education,
+                scientific presentations, and connection.
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-primary-200">
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  October 16-18, 2026
+                  May 23–25, 2026
                 </span>
                 <span className="flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
-                  Beverly Hilton, Los Angeles, CA
+                  Kimpton Hotel Monaco, Washington, D.C.
                 </span>
               </div>
 
@@ -139,21 +139,21 @@ export default function CongressPage() {
                 </h2>
                 <div className="mt-6 space-y-4 text-muted leading-relaxed">
                   <p>
-                    The IAMA Annual Congress is the premier gathering of Iranian
-                    American medical professionals. Now in its 26th year, the
-                    Congress brings together physicians, researchers, and
-                    healthcare leaders for a transformative experience.
+                    The IAMA Annual Meeting is the premier gathering of Iranian
+                    American medical professionals. Now in its 30th year, the
+                    meeting brings together physicians, researchers, residents,
+                    and students from across the country.
                   </p>
                   <p>
-                    This year&apos;s theme, &quot;Bridging Innovation and
-                    Tradition in Medicine,&quot; reflects our commitment to
-                    advancing healthcare through cutting-edge research while
-                    honoring our rich cultural heritage in the healing arts.
+                    This year the meeting is held at the Kimpton Hotel Monaco in
+                    Washington, D.C., May 23–25, 2026, with the Gala Dinner on
+                    Sunday, May 24 from 7–11 PM (a separate ticket is required).
                   </p>
                   <p>
-                    The three-day program features keynote addresses, panel
-                    discussions, abstract presentations, hands-on workshops, and
-                    ample networking opportunities in a world-class setting.
+                    The program features keynote addresses, scientific sessions,
+                    abstract presentations, and ample networking — with AMA-CME
+                    credits and travel grants for junior members presenting
+                    research.
                   </p>
                 </div>
               </div>
@@ -167,20 +167,20 @@ export default function CongressPage() {
                     <ul className="mt-4 space-y-3">
                       {[
                         {
-                          date: "June 1, 2026",
+                          date: "March 1, 2026",
                           label: "Abstract Submission Deadline",
                         },
                         {
-                          date: "July 15, 2026",
-                          label: "Early Bird Registration Ends",
+                          date: "May 23, 2026",
+                          label: "Annual Meeting Opens",
                         },
                         {
-                          date: "September 1, 2026",
-                          label: "Regular Registration Ends",
+                          date: "May 24, 2026",
+                          label: "Gala Dinner (7–11 PM)",
                         },
                         {
-                          date: "October 16, 2026",
-                          label: "Congress Opening Ceremony",
+                          date: "May 25, 2026",
+                          label: "Annual Meeting Closes",
                         },
                       ].map((item) => (
                         <li
@@ -203,15 +203,15 @@ export default function CongressPage() {
                   <CardContent className="p-5">
                     <h3 className="font-semibold text-secondary">Venue</h3>
                     <p className="mt-2 text-sm text-muted">
-                      The Beverly Hilton
+                      Kimpton Hotel Monaco
                       <br />
-                      9876 Wilshire Boulevard
+                      700 F Street NW
                       <br />
-                      Beverly Hills, CA 90210
+                      Washington, D.C. 20004
                     </p>
                     <p className="mt-3 text-sm text-muted">
-                      Special hotel rates available for IAMA Congress attendees.
-                      Details will be provided upon registration.
+                      A discounted room rate is available for IAMA Annual Meeting
+                      attendees. Make your reservation at the Kimpton Hotel Monaco.
                     </p>
                   </CardContent>
                 </Card>

@@ -11,59 +11,59 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Membership",
   description:
-    "Join the Iranian American Medical Association. Choose from Fellow, Faculty, International, Associate, and Student membership tiers.",
+    "Join the Iranian American Medical Association. Choose from Platinum, Gold, Silver, Bronze, and Pre-residency membership tiers.",
 };
 
 const tiers = [
   {
-    name: "Student",
-    price: 50,
-    description: "For medical students and residents in training.",
-    featured: false,
-  },
-  {
-    name: "Associate",
-    price: 250,
-    description: "For early-career physicians and allied health professionals.",
-    featured: false,
-  },
-  {
-    name: "International",
-    price: 300,
-    description: "For physicians practicing outside the United States.",
-    featured: false,
-  },
-  {
-    name: "Faculty",
-    price: 400,
-    description: "For physicians in academic and teaching positions.",
-    featured: false,
-  },
-  {
-    name: "Fellow",
-    price: 500,
-    description: "Full membership with all privileges and voting rights.",
+    name: "Platinum",
+    price: 150,
+    description: "MD, DO, DMD, DDS, DVM, PharmD, PhD, DPM, DC, DN.",
     featured: true,
+  },
+  {
+    name: "Gold",
+    price: 75,
+    description: "PA, RN, medical technologists, and other professionals.",
+    featured: false,
+  },
+  {
+    name: "Silver",
+    price: 75,
+    description: "Retirees.",
+    featured: false,
+  },
+  {
+    name: "Bronze",
+    price: 50,
+    description: "Residents, fellows, and post docs.",
+    featured: false,
+  },
+  {
+    name: "Pre-residency",
+    price: 0,
+    description: "Students, unpaid research fellows, and non-practicing doctors.",
+    featured: false,
   },
 ];
 
 const features = [
-  "Member Directory Listing",
-  "Congress Discount",
-  "CME Access",
-  "Journal Subscription",
-  "Committee Eligibility",
+  "Networking",
+  "Meeting Registration Discounts",
+  "Webinars & Monthly Lectures",
+  "Job Board Access",
+  "Travel Grants & Awards",
+  "Committee & Board Eligibility",
   "Voting Rights",
   "Mentorship Program",
-  "Research Grants",
 ];
 
 const featureMatrix: Record<string, boolean[]> = {
-  Student:    [true,  true,  true,  false, false, false, true,  false],
-  Associate:  [true,  true,  true,  true,  false, false, true,  false],
-  International: [true, true, true, true, false, false, false, true],
-  Faculty:    [true,  true,  true,  true,  true,  true,  true,  true],
-  Fellow:     [true,  true,  true,  true,  true,  true,  true,  true],
+  Platinum:       [true, true, true, true, true,  true,  true,  true],
+  Gold:           [true, true, true, true, true,  true,  true,  true],
+  Silver:         [true, true, true, true, true,  true,  true,  true],
+  Bronze:         [true, true, true, true, true,  true,  true,  true],
+  "Pre-residency": [true, true, true, true, true,  false, false, true],
 };
 
 export default function MembershipPage() {
@@ -215,12 +215,12 @@ export default function MembershipPage() {
             <p className="mt-4 text-lg text-muted leading-relaxed">
               Contact our membership team at{" "}
               <a
-                href="mailto:membership@iama.org"
+                href="mailto:iama@iama.org"
                 className="text-primary hover:text-primary-dark"
               >
-                membership@iama.org
+                iama@iama.org
               </a>{" "}
-              or call (310) 555-1234. We&apos;re happy to help you find the right
+              or call (973) 595-8888. We&apos;re happy to help you find the right
               membership tier for your career.
             </p>
             <div className="mt-8">

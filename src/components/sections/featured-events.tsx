@@ -5,32 +5,32 @@ import { Card, CardContent } from "@/components/ui/card";
 const events = [
   {
     id: "1",
-    title: "IAMA Annual Congress 2026",
-    date: "October 16-18, 2026",
-    location: "Beverly Hilton, Los Angeles, CA",
+    title: "IAMA 30th Annual Meeting",
+    date: "May 23–25, 2026",
+    location: "Kimpton Hotel Monaco, Washington, D.C.",
     description:
-      "Join over 500 physicians and researchers for three days of cutting-edge medical education, networking, and community.",
+      "Three decades of IAMA. Join colleagues in Washington, D.C. for CME sessions, scientific presentations, and the Gala Dinner.",
     href: "/congress",
     featured: true,
   },
   {
     id: "2",
-    title: "Spring CME Symposium",
-    date: "May 10, 2026",
-    location: "Virtual Event",
+    title: "Annual Gala Dinner",
+    date: "Sunday, May 24, 2026 · 7–11 PM",
+    location: "Kimpton Hotel Monaco, Washington, D.C.",
     description:
-      "A full day of accredited continuing medical education covering the latest advances in cardiology and oncology.",
-    href: "/education",
+      "An evening of celebration and networking. A separate ticket is required for the Gala Dinner during the Annual Meeting.",
+    href: "/congress",
     featured: false,
   },
   {
     id: "3",
-    title: "Young Physicians Forum",
-    date: "June 22, 2026",
-    location: "New York, NY",
+    title: "Call for Abstracts",
+    date: "Deadline: March 1, 2026",
+    location: "Online Submission",
     description:
-      "A gathering for residents and early-career physicians to network, share research, and connect with mentors.",
-    href: "/education",
+      "Submit your abstract for the Annual Meeting. Junior members submitting abstracts can also apply for a travel grant.",
+    href: "/abstracts/submit",
     featured: false,
   },
 ];

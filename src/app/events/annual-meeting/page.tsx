@@ -19,9 +19,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Annual Meeting 2026 | IAMA Events",
+  title: "30th Annual Meeting 2026 | IAMA Events",
   description:
-    "Join us at the IAMA Annual Meeting 2026 in Washington, D.C. — three days of CME, networking, leadership awards, and the resident research competition.",
+    "Join the IAMA 30th Annual Meeting at the Kimpton Hotel Monaco in Washington, D.C., May 23–25, 2026 — CME, networking, the Gala Dinner, and the abstract competition.",
 };
 
 const tracks = [
@@ -73,7 +73,7 @@ const tracks = [
 
 const schedule = [
   {
-    day: "Friday, September 18",
+    day: "Saturday, May 23",
     label: "Opening Day",
     items: [
       { time: "12:00 PM – 5:00 PM", activity: "Registration & Check-In" },
@@ -82,7 +82,7 @@ const schedule = [
     ],
   },
   {
-    day: "Saturday, September 19",
+    day: "Sunday, May 24",
     label: "Main Program",
     items: [
       { time: "7:30 AM – 8:30 AM", activity: "Breakfast & Networking" },
@@ -93,7 +93,7 @@ const schedule = [
     ],
   },
   {
-    day: "Sunday, September 20",
+    day: "Monday, May 25",
     label: "Closing Day",
     items: [
       { time: "8:00 AM – 9:00 AM", activity: "Morning Coffee & Networking" },
@@ -110,8 +110,8 @@ export default function AnnualMeetingPage() {
       <Navbar />
       <main>
         <PageHeader
-          title="IAMA Annual Meeting 2026"
-          subtitle="Three days of clinical excellence, advocacy, networking, and celebration in the nation's capital."
+          title="IAMA 30th Annual Meeting"
+          subtitle="Three days of clinical excellence, networking, and celebration in the nation's capital, May 23–25, 2026."
           breadcrumbs={[
             { label: "Events", href: "/events" },
             { label: "Annual Meeting" },
@@ -124,21 +124,21 @@ export default function AnnualMeetingPage() {
             <div className="flex flex-wrap gap-6 text-sm text-muted">
               <span className="flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">September 18–20, 2026</strong>
+                <strong className="text-secondary">May 23–25, 2026</strong>
               </span>
               <span className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
                 <strong className="text-secondary">
-                  Washington Marriott Marquis, Washington, D.C.
+                  Kimpton Hotel Monaco, Washington, D.C.
                 </strong>
               </span>
               <span className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">Up to 12.0 AMA PRA Category 1 Credits™</strong>
+                <strong className="text-secondary">AMA-CME Credits</strong>
               </span>
               <span className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-primary" />
-                <strong className="text-secondary">Expected 400+ Attendees</strong>
+                <strong className="text-secondary">Gala Dinner: Sun, May 24</strong>
               </span>
             </div>
           </div>
@@ -158,11 +158,11 @@ export default function AnnualMeetingPage() {
                   clinical education, peer recognition, policy advocacy, and cultural celebration.
                 </p>
                 <p className="text-muted leading-relaxed">
-                  The 2026 Annual Meeting will be held in Washington, D.C., reflecting IAMA's
-                  commitment to healthcare advocacy at the federal level. Attendees can expect
-                  nationally recognized keynote speakers, accredited CME sessions spanning four
-                  specialty tracks, the Annual Awards Gala, and the SUSMA/JAVAAN poster
-                  competition.
+                  The 2026 Annual Meeting is held at the Kimpton Hotel Monaco in Washington,
+                  D.C., May 23–25, with the Gala Dinner on Sunday, May 24 from 7–11 PM (a
+                  separate ticket is required). Attendees can expect keynote speakers,
+                  accredited CME sessions, the Awards Gala, and the abstract competition with
+                  travel grants for junior members.
                 </p>
                 <p className="text-muted leading-relaxed">
                   Detailed scheduling, speaker announcements, and hotel reservation links will be
@@ -176,8 +176,8 @@ export default function AnnualMeetingPage() {
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <Badge variant="default">CME Accredited</Badge>
-                  <Badge variant="success">Early Bird Registration Open</Badge>
-                  <Badge variant="warning">Abstract Submissions Due July 15</Badge>
+                  <Badge variant="success">Registration Open</Badge>
+                  <Badge variant="warning">Abstract Submissions Due March 1</Badge>
                 </div>
               </div>
 
@@ -188,11 +188,11 @@ export default function AnnualMeetingPage() {
                     <h3 className="font-semibold text-secondary">Key Dates</h3>
                     <ul className="space-y-2 text-sm">
                       {[
-                        { label: "Early Bird Deadline", date: "July 1, 2026" },
-                        { label: "Abstract Submission Closes", date: "July 15, 2026" },
-                        { label: "Hotel Block Deadline", date: "August 20, 2026" },
-                        { label: "Regular Registration Closes", date: "September 5, 2026" },
-                        { label: "Conference Begins", date: "September 18, 2026" },
+                        { label: "Abstract Submission Closes", date: "March 1, 2026" },
+                        { label: "Annual Meeting Opens", date: "May 23, 2026" },
+                        { label: "Gala Dinner (7–11 PM)", date: "May 24, 2026" },
+                        { label: "Annual Meeting Closes", date: "May 25, 2026" },
+                        { label: "Hotel Reservations", date: "Kimpton Hotel Monaco" },
                       ].map((item) => (
                         <li key={item.label} className="flex justify-between gap-4">
                           <span className="text-muted">{item.label}</span>
@@ -205,22 +205,19 @@ export default function AnnualMeetingPage() {
 
                 <Card>
                   <CardContent className="p-5 space-y-3">
-                    <h3 className="font-semibold text-secondary">Registration Fees</h3>
-                    <ul className="space-y-2 text-sm">
-                      {[
-                        { label: "Member (Early Bird)", price: "$395" },
-                        { label: "Member (Regular)", price: "$495" },
-                        { label: "Non-Member", price: "$695" },
-                        { label: "Resident / Fellow", price: "$195" },
-                        { label: "Medical Student", price: "$75" },
-                        { label: "One-Day Pass", price: "$250" },
-                      ].map((item) => (
-                        <li key={item.label} className="flex justify-between gap-4">
-                          <span className="text-muted">{item.label}</span>
-                          <span className="font-semibold text-primary">{item.price}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <h3 className="font-semibold text-secondary">Registration & Hotel</h3>
+                    <p className="text-sm text-muted leading-relaxed">
+                      Register online for the 30th Annual Meeting. A discounted room block is
+                      available for attendees at the Kimpton Hotel Monaco in Washington, D.C.
+                      The Gala Dinner on Sunday, May 24 requires a separate ticket.
+                    </p>
+                    <Link
+                      href="/congress/register"
+                      className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                    >
+                      Go to registration
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
                   </CardContent>
                 </Card>
               </div>
@@ -336,9 +333,9 @@ export default function AnnualMeetingPage() {
           <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center">
             <h2 className="text-3xl font-bold">Ready to Register?</h2>
             <p className="mt-4 max-w-xl mx-auto text-primary-100 leading-relaxed">
-              Early bird pricing is available through July 1, 2026. IAMA members save up to
-              $100 on registration. Residents and medical students qualify for deeply
-              discounted rates.
+              Reserve your spot for the 30th Annual Meeting and book your room at the
+              discounted rate at the Kimpton Hotel Monaco. IAMA members receive discounted
+              registration; residents and students qualify for reduced rates.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
