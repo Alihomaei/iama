@@ -82,7 +82,7 @@ src/
 public/
 ├── logo.png                  # official IAMA logo, opaque (used in the navbar)
 ├── logo-transparent.png      # transparent logo (auth pages + footer, on white plaques over dark)
-└── images/hero-1-v2.jpg, hero-2.jpg   # homepage hero edge images
+└── images/                   # hero-1-v2.jpg, hero-2.jpg (homepage edges); events/ (2026 poster); news/; team/ (board headshots)
 supabase/migrations/          # SQL schema
 ```
 
@@ -183,7 +183,9 @@ project.
   Monaco, Washington, D.C., May 23–25, 2026), membership tiers, the four sections,
   and contact/social details. The `/about` page has an **"Our Team"** section with
   hover-reveal photo cards of the 12 Board of Directors (real headshots in
-  `public/images/team/`). Chapter & section data live in `src/lib/chapters.ts`
+  `public/images/team/`). The `/events/annual-meeting` page shows the official
+  2026 event poster (`public/images/events/annual-meeting-2026-poster.png`,
+  sourced from iama.org). Chapter & section data live in `src/lib/chapters.ts`
   and `src/lib/sections.ts`; news card photos live in `public/images/news/`.
 - **Still illustrative / needs real data:** the `/education` CME catalog (the
   legacy site is "Coming Soon"); per-chapter member counts and the chairs for the
