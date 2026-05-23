@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IAMA — Iranian American Medical Association
 
-## Getting Started
+The official website for the Iranian American Medical Association (IAMA), a
+501(c)(3) non-profit, non-religious, non-political organization (founded 1993)
+established for charitable and educational purposes. It provides membership,
+an annual congress, abstract submission, educational resources, a member
+directory, regional chapters and specialty sections, and an admin panel.
 
-First, run the development server:
+## Tech stack
+
+| Area | Choice |
+| --- | --- |
+| Framework | Next.js 16 (App Router, React 19) |
+| Styling | Tailwind CSS v4 (theme tokens in `src/app/globals.css`) |
+| Auth & DB | Supabase (Postgres + Auth, SSR via `@supabase/ssr`) |
+| Payments | Stripe + PayPal |
+| Email | Resend (transactional) |
+| Icons | lucide-react |
+| Analytics | Vercel Analytics |
+| Hosting | Vercel (production-only; push to `main` auto-deploys) |
+
+> **Important:** This project pins Next.js 16, which has breaking changes vs.
+> earlier versions (e.g. dynamic-route `params` is a `Promise` and must be
+> awaited). See [`AGENTS.md`](./AGENTS.md) — read `node_modules/next/dist/docs/`
+> before changing framework code.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# 1. Install dependencies
+npm install
+
+# 2. Configure environment
+cp .env.local.example .env.local   # then fill in the values below
+
+# 3. Run the dev server
+npm run dev                        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Other scripts: `npm run build` (production build), `npm run start` (serve the
+build), `npm run lint` (ESLint).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All keys live in `.env.local` (see `.env.local.example`):
 
-## Learn More
+- **Supabase** — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+- **Stripe** — `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`
+- **PayPal** — `NEXT_PUBLIC_PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`
+- **Resend** — `RESEND_API_KEY`
+- **App** — `NEXT_PUBLIC_APP_URL`
 
-To learn more about Next.js, take a look at the following resources:
+The middleware tolerates missing Supabase env vars so the app still boots
+locally without a configured backend.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                      # App Router routes
+│   ├── page.tsx              # Homepage (hero, stats, events, news, CTA, partners)
+│   ├── about/ membership/ congress/ (register, schedule, speakers)
+│   ├── events/ (annual-meeting)
+│   ├── community/ (chapters/[slug], sections/[slug])
+│   ├── opportunities/ (mentorship, travel-grant)
+│   ├── donation/ news/ education/ directory/ advocacy/
+│   ├── abstracts/ (submit, status)
+│   ├── auth/ (login, signup, callback)
+│   ├── dashboard/            # Member dashboard
+│   ├── admin/                # Admin panel (members, abstracts, events, content, settings)
+│   └── api/                  # Route handlers (abstracts, events, members, news, directory, stripe, paypal)
+├── components/
+│   ├── layout/               # navbar, footer, page-header
+│   ├── sections/             # hero, stats, featured-events, latest-news, membership-cta, partners
+│   └── ui/                   # button, input, textarea, select, tabs, card, badge
+├── lib/
+│   ├── supabase/             # client, server, middleware helpers
+│   ├── stripe.ts paypal.ts email.ts utils.ts
+│   └── chapters.ts sections.ts   # data for community chapter/section pages
+├── types/database.ts
+└── middleware.ts
+public/
+├── logo.png                  # official IAMA logo (used in the navbar)
+└── images/hero-1.jpg, hero-2.jpg   # homepage hero edge images
+supabase/migrations/          # SQL schema
+```
 
-## Deploy on Vercel
+## Routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Public:** `/`, `/about`, `/membership`, `/congress` (+ `register`, `schedule`, `speakers`), `/events` (+ `annual-meeting`), `/community` (+ `chapters/[slug]`, `sections/[slug]`), `/opportunities` (+ `mentorship`, `travel-grant`), `/donation`, `/news`, `/education`, `/directory`, `/advocacy`, `/abstracts/submit`, `/abstracts/status`
+- **Auth:** `/auth/login`, `/auth/signup`, `/auth/callback`
+- **Member:** `/dashboard`
+- **Admin:** `/admin` (+ `members`, `abstracts`, `events`, `content`, `settings`)
+- **API:** `/api/abstracts` (+ `[id]`, `[id]/review`), `/api/events` (+ `[slug]`), `/api/members` (+ `[id]`), `/api/news` (+ `[slug]`), `/api/directory`, `/api/stripe/checkout`, `/api/stripe/webhook`, `/api/paypal/create-order`, `/api/paypal/capture-order`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Navigation
+
+Primary nav: **About · Membership · Event ▾ · Community ▾ · Opportunities & Awards ▾ · News · Find a Doctor · Donation**. Community is a two-level menu — **Chapters** (Arizona, California, Massachusetts, New Jersey, New York, Ohio) and **Sections** (JAVAAN/Juniors, Psychiatry, SUSMA, Dental). The full horizontal nav shows at `xl` (≥1280px); below that it collapses to a hamburger with a nested accordion.
+
+## Admin panel
+
+`/admin` is gated by Supabase auth + a `profiles.admin_role` (super_admin,
+content_editor, abstract_reviewer, event_manager). Sections:
+
+- **Members / Abstracts / Events / Content** — manage records and submissions.
+- **Settings** (`/admin/settings`) — non-structural site edits: organization
+  info, homepage hero copy + button links, the four stat counters, hero
+  carousel images, partner list, and social links.
+
+> The Content and Settings editors currently use in-memory sample state — edits
+> preview locally but are **not yet persisted**. Wire them to Supabase (e.g. a
+> `site_settings` table) to make changes permanent.
+
+## Database
+
+Supabase Postgres. The schema lives in
+`supabase/migrations/001_initial_schema.sql`. Tables: `profiles`, `memberships`,
+`membership_pricing`, `congress_events`, `congress_pricing`, `registrations`,
+`abstracts`, `speakers`, `congress_schedule`, `news_posts`,
+`education_resources`, `payments`.
+
+Apply it via the Supabase SQL editor or the Supabase CLI.
+
+## Homepage hero
+
+`src/components/sections/hero.tsx` shows a clean teal gradient behind the
+centered title, with photos on the left/right edges that fade toward the center
+(CSS masks). Images come from `public/images/hero-*.jpg` (left = speaker,
+right = audience). The image carousel/rotation is currently **paused** (renders
+statically). Original source photos are kept in `assests/` (untracked).
+
+## Deployment
+
+The GitHub repo is connected to Vercel. **Pushing to `main` automatically
+deploys to production** (production-only; no preview deploys). Live at
+`https://iama-fawn.vercel.app`. No manual `vercel deploy` is needed.
+
+```bash
+git add -A && git commit -m "…" && git push origin main   # triggers prod deploy
+```
+
+A custom domain has been purchased but is not yet attached to the Vercel
+project.
+
+## Status / TODO
+
+- **Sample content:** the newer pages (`/events`, `/community/*`,
+  `/opportunities/*`, `/donation`) ship with realistic **placeholder** content
+  meant as templates — replace with real copy/data (chapter & section data live
+  in `src/lib/chapters.ts` and `src/lib/sections.ts`).
+- **Admin persistence:** wire `/admin/settings` and `/admin/content` to Supabase.
+- **Donation:** the page is UI-only; connect it to Stripe/PayPal.
+- **Hero left image:** may render rotated in some browsers due to an EXIF
+  orientation tag. Re-export upright and metadata-clean, e.g.
+  `magick assests/header_car_1.JPG -auto-orient -rotate 90 -strip -resize x1600 public/images/hero-1-v2.jpg`,
+  then point `leftImage` in `hero.tsx` at the new filename (a new name also
+  busts the image cache).
+- **Footer logo:** still shows the old “I” placeholder; swap for `/logo.png`.
