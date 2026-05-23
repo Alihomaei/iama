@@ -19,6 +19,41 @@ import {
   Shield,
 } from "lucide-react";
 
+// ─────────────────────────────────────────────────────────────────────────
+// ⚠️  TEMPORARY ADMIN BYPASS — REMOVE WHEN SUPABASE IS CONNECTED
+// Production has no Supabase backend yet (the Vercel project has no env vars,
+// so the client falls back to https://placeholder.supabase.co and real auth
+// cannot run). Until Supabase is wired up, /admin is protected by a hardcoded
+// passphrase instead of a real login.
+//
+// NOTE: this is a CLIENT-SIDE gate only — the passphrase ships in the JS
+// bundle, so it is a speed bump, not real security. It is acceptable only
+// because there is no real data behind it yet (every admin page renders local
+// sample data). To restore real auth: set ADMIN_BYPASS = false and finish the
+// Supabase setup documented in README → "Admin access (temporary bypass)".
+const ADMIN_BYPASS = true;
+const ADMIN_BYPASS_PASSWORD = "iama-admin-2026";
+const ADMIN_BYPASS_PROFILE: Profile = {
+  id: "bypass-admin",
+  email: "ali.homaei2012@gmail.com",
+  full_name: "Ali Homaei",
+  first_name: "Ali",
+  last_name: "Homaei",
+  avatar_url: null,
+  phone: null,
+  specialty: null,
+  institution: null,
+  city: null,
+  state: null,
+  country: null,
+  bio: null,
+  is_public_directory: false,
+  admin_role: "super_admin",
+  created_at: new Date().toISOString(),
+  updated_at: new Date().toISOString(),
+};
+// ─────────────────────────────────────────────────────────────────────────
+
 interface NavItem {
   label: string;
   href: string;
@@ -85,9 +120,25 @@ export default function AdminLayout({
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  // Temporary passphrase gate state (see ADMIN_BYPASS above)
+  const [bypassGate, setBypassGate] = useState(false);
+  const [bypassInput, setBypassInput] = useState("");
+  const [bypassError, setBypassError] = useState("");
 
   useEffect(() => {
     async function checkAdmin() {
+      // TEMPORARY: hardcoded passphrase gate while Supabase is not connected.
+      if (ADMIN_BYPASS) {
+        if (sessionStorage.getItem("iama_admin_bypass") === "ok") {
+          setProfile(ADMIN_BYPASS_PROFILE);
+          setLoading(false);
+        } else {
+          setBypassGate(true);
+          setLoading(false);
+        }
+        return;
+      }
+
       const supabase = createClient();
 
       const {
@@ -118,9 +169,26 @@ export default function AdminLayout({
   }, [router]);
 
   async function handleSignOut() {
+    if (ADMIN_BYPASS) {
+      sessionStorage.removeItem("iama_admin_bypass");
+      router.replace("/");
+      return;
+    }
     const supabase = createClient();
     await supabase.auth.signOut();
     router.replace("/");
+  }
+
+  function handleBypassSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (bypassInput === ADMIN_BYPASS_PASSWORD) {
+      sessionStorage.setItem("iama_admin_bypass", "ok");
+      setProfile(ADMIN_BYPASS_PROFILE);
+      setBypassGate(false);
+      setBypassError("");
+    } else {
+      setBypassError("Incorrect passphrase. Try again.");
+    }
   }
 
   const visibleNavItems = navItems.filter(
@@ -134,6 +202,46 @@ export default function AdminLayout({
           <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
           <p className="mt-3 text-sm text-muted">Verifying admin access...</p>
         </div>
+      </div>
+    );
+  }
+
+  // TEMPORARY passphrase gate (shown while Supabase auth is not connected)
+  if (bypassGate) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-gray-50 px-4">
+        <form
+          onSubmit={handleBypassSubmit}
+          className="w-full max-w-sm rounded-xl border border-border bg-white p-6 shadow-sm"
+        >
+          <div className="mb-4 flex items-center gap-2">
+            <Shield className="h-6 w-6 text-primary" />
+            <h1 className="text-lg font-bold text-secondary">IAMA Admin</h1>
+          </div>
+          <p className="mb-4 text-sm text-muted">
+            Temporary access. Enter the admin passphrase to continue.
+          </p>
+          <input
+            type="password"
+            value={bypassInput}
+            onChange={(e) => setBypassInput(e.target.value)}
+            placeholder="Passphrase"
+            autoFocus
+            className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          />
+          {bypassError && (
+            <p className="mt-2 text-sm text-destructive">{bypassError}</p>
+          )}
+          <button
+            type="submit"
+            className="mt-4 w-full cursor-pointer rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+          >
+            Enter
+          </button>
+          <p className="mt-4 text-center text-xs text-muted">
+            Temporary bypass — real login returns once Supabase is connected.
+          </p>
+        </form>
       </div>
     );
   }

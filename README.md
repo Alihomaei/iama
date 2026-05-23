@@ -100,8 +100,33 @@ Primary nav: **About · Membership · Event ▾ · Community ▾ · Opportunitie
 
 ## Admin panel
 
-`/admin` is gated by Supabase auth + a `profiles.admin_role` (super_admin,
-content_editor, abstract_reviewer, event_manager). Sections:
+> ⚠️ **Temporary access — backend not connected yet.** Production is **not wired
+> to Supabase** (the Vercel project has no env vars, so the client falls back to
+> `https://placeholder.supabase.co` and real auth cannot run). As a stopgap,
+> `/admin` is gated by a **hardcoded passphrase** instead of Supabase auth:
+>
+> - **URL:** `/admin` · **Passphrase:** `iama-admin-2026`
+> - Implemented in `src/app/admin/layout.tsx` via `const ADMIN_BYPASS = true`
+>   (it injects a mock `super_admin` profile). This is a **client-side gate
+>   only** — the passphrase ships in the JS bundle, so it's a speed bump, not
+>   real security. Acceptable only because every admin page renders local sample
+>   data (no real records exist behind it).
+>
+> **To restore real auth and remove the bypass (once Supabase exists):**
+> 1. Create a Supabase project (or add the Vercel ↔ Supabase Marketplace integration).
+> 2. Apply `supabase/migrations/001_initial_schema.sql` (Supabase SQL editor or CLI).
+> 3. Set the env vars in Vercel — `NEXT_PUBLIC_SUPABASE_URL`,
+>    `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` — then **redeploy**
+>    (the `NEXT_PUBLIC_*` values only bake in on a fresh build).
+> 4. Create your account (sign up at `/auth/signup`, or add a user in Supabase
+>    Auth) and grant it the role:
+>    `update public.profiles set admin_role='super_admin' where email='ali.homaei2012@gmail.com';`
+> 5. In `src/app/admin/layout.tsx`, set `ADMIN_BYPASS = false` and delete the
+>    bypass block.
+
+Once Supabase is connected, `/admin` is gated by Supabase auth + a
+`profiles.admin_role` (super_admin, content_editor, abstract_reviewer,
+event_manager). Sections:
 
 - **Members / Abstracts / Events / Content** — manage records and submissions.
 - **Settings** (`/admin/settings`) — non-structural site edits: organization
@@ -145,6 +170,12 @@ project.
 
 ## Status / TODO
 
+- **⚠️ Backend not connected (highest priority):** production has **no Supabase
+  project / env vars**, so auth, signup/login, the member dashboard, payments,
+  and persisted admin data don't function on the live site. `/admin` is reachable
+  only via a **temporary hardcoded passphrase** (`iama-admin-2026`,
+  `ADMIN_BYPASS` in `src/app/admin/layout.tsx`). See **Admin panel** above for
+  the full steps to connect Supabase and remove the bypass.
 - **Real content:** copy and data across the homepage, `/about`, `/membership`,
   `/congress`, `/events` (+ `annual-meeting`), `/community/*`, `/opportunities/*`,
   `/news`, and `/donation` now reflect real IAMA information sourced from the
