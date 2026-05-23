@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageHeader } from "@/components/layout/page-header";
@@ -140,6 +141,63 @@ export default function AnnualMeetingPage() {
                 <Users className="h-4 w-4 text-primary" />
                 <strong className="text-secondary">Gala Dinner: Sun, May 24</strong>
               </span>
+            </div>
+          </div>
+        </section>
+
+        {/* Official event poster */}
+        <section className="py-14 border-b border-border">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="grid items-center gap-10 md:grid-cols-2">
+              {/* Poster */}
+              <div className="flex justify-center md:justify-end">
+                <a
+                  href="/images/events/annual-meeting-2026-poster.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block w-full max-w-sm overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5"
+                >
+                  <Image
+                    src="/images/events/annual-meeting-2026-poster.png"
+                    alt="IAMA 30th Annual Meeting — Washington, D.C., May 23–25, 2026 — official poster"
+                    width={1440}
+                    height={2160}
+                    className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </a>
+              </div>
+              {/* Text + actions */}
+              <div className="max-w-md space-y-4">
+                <Badge variant="warning">Official Poster</Badge>
+                <h2 className="text-3xl font-bold leading-tight text-secondary">
+                  Celebrating the Past,
+                  <br />
+                  Embracing the Future
+                </h2>
+                <p className="text-muted leading-relaxed">
+                  The IAMA 30th Annual Meeting comes to Washington, D.C. Join
+                  physicians, residents, and students from across the country at
+                  the Kimpton Hotel Monaco, May 23–25, 2026, for three days of
+                  CME, research, and celebration.
+                </p>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <Link
+                    href="/congress/register"
+                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+                  >
+                    Register Now
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href="/images/events/annual-meeting-2026-poster.png"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-semibold text-secondary transition-colors hover:bg-gray-50"
+                  >
+                    View Full Poster
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
