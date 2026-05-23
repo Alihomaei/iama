@@ -8,6 +8,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
   User,
   LogOut,
   LayoutDashboard,
@@ -16,36 +17,67 @@ import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 
-const navItems = [
+type NavLeaf = { label: string; href: string };
+type NavChild = { label: string; href?: string; children?: NavLeaf[] };
+type NavItem = { label: string; href: string; children?: NavChild[] };
+
+const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Membership", href: "/membership" },
   {
-    label: "Congress",
-    href: "/congress",
+    label: "Event",
+    href: "/events",
     children: [
-      { label: "Overview", href: "/congress" },
-      { label: "Register", href: "/congress/register" },
-      { label: "Schedule", href: "/congress/schedule" },
-      { label: "Speakers", href: "/congress/speakers" },
+      { label: "Events", href: "/events" },
+      { label: "Annual Meeting", href: "/events/annual-meeting" },
     ],
   },
   {
-    label: "Abstracts",
-    href: "/abstracts/submit",
+    label: "Community",
+    href: "/community",
     children: [
-      { label: "Submit Abstract", href: "/abstracts/submit" },
-      { label: "My Submissions", href: "/abstracts/status" },
+      {
+        label: "Chapters",
+        children: [
+          { label: "Arizona", href: "/community/chapters/arizona" },
+          { label: "California", href: "/community/chapters/california" },
+          {
+            label: "Massachusetts",
+            href: "/community/chapters/massachusetts",
+          },
+          { label: "New Jersey", href: "/community/chapters/new-jersey" },
+          { label: "New York", href: "/community/chapters/new-york" },
+          { label: "Ohio", href: "/community/chapters/ohio" },
+        ],
+      },
+      {
+        label: "Sections",
+        children: [
+          { label: "JAVAAN (Juniors)", href: "/community/sections/javaan" },
+          { label: "Psychiatry", href: "/community/sections/psychiatry" },
+          { label: "SUSMA", href: "/community/sections/susma" },
+          { label: "Dental", href: "/community/sections/dental" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Opportunities & Awards",
+    href: "/opportunities",
+    children: [
+      { label: "Mentorship Program", href: "/opportunities/mentorship" },
+      { label: "Travel Grant", href: "/opportunities/travel-grant" },
     ],
   },
   { label: "News", href: "/news" },
-  { label: "Education", href: "/education" },
   { label: "Find a Doctor", href: "/directory" },
-  { label: "Advocacy", href: "/advocacy" },
+  { label: "Donation", href: "/donation" },
 ];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -76,6 +108,7 @@ export function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
     setOpenDropdown(null);
+    setOpenSubmenu(null);
   }, [pathname]);
 
   const handleSignOut = async () => {
@@ -108,11 +141,10 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive =
-              pathname === item.href ||
-              pathname.startsWith(item.href + "/");
+              pathname === item.href || pathname.startsWith(item.href + "/");
 
             if (item.children) {
               return (
@@ -134,21 +166,46 @@ export function Navbar() {
                     <ChevronDown className="h-3.5 w-3.5" />
                   </button>
                   {openDropdown === item.label && (
-                    <div className="absolute left-0 top-full w-48 rounded-lg border border-border bg-white py-1 shadow-lg">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className={cn(
-                            "block px-4 py-2 text-sm transition-colors",
-                            pathname === child.href
-                              ? "bg-primary-50 text-primary"
-                              : "text-secondary hover:bg-primary-50 hover:text-primary"
-                          )}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                    <div className="absolute left-0 top-full w-56 rounded-lg border border-border bg-white py-1 shadow-lg">
+                      {item.children.map((child) =>
+                        child.children ? (
+                          <div key={child.label} className="group/sub relative">
+                            <div className="flex cursor-default items-center justify-between gap-2 px-4 py-2 text-sm font-medium text-secondary group-hover/sub:bg-primary-50 group-hover/sub:text-primary">
+                              {child.label}
+                              <ChevronRight className="h-3.5 w-3.5" />
+                            </div>
+                            <div className="absolute left-full top-0 z-20 hidden min-w-[12rem] rounded-lg border border-border bg-white py-1 shadow-lg group-hover/sub:block">
+                              {child.children.map((leaf) => (
+                                <Link
+                                  key={leaf.href}
+                                  href={leaf.href}
+                                  className={cn(
+                                    "block whitespace-nowrap px-4 py-2 text-sm transition-colors",
+                                    pathname === leaf.href
+                                      ? "bg-primary-50 text-primary"
+                                      : "text-secondary hover:bg-primary-50 hover:text-primary"
+                                  )}
+                                >
+                                  {leaf.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          <Link
+                            key={child.label}
+                            href={child.href ?? "#"}
+                            className={cn(
+                              "block px-4 py-2 text-sm transition-colors",
+                              pathname === child.href
+                                ? "bg-primary-50 text-primary"
+                                : "text-secondary hover:bg-primary-50 hover:text-primary"
+                            )}
+                          >
+                            {child.label}
+                          </Link>
+                        )
+                      )}
                     </div>
                   )}
                 </div>
@@ -173,7 +230,7 @@ export function Navbar() {
         </nav>
 
         {/* Right side: auth buttons or user menu */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           {user ? (
             <div className="relative">
               <button
@@ -233,7 +290,7 @@ export function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="lg:hidden flex h-10 w-10 items-center justify-center rounded-md text-secondary hover:bg-primary-50 cursor-pointer"
+          className="xl:hidden flex h-10 w-10 items-center justify-center rounded-md text-secondary hover:bg-primary-50 cursor-pointer"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -243,12 +300,11 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-white">
+        <div className="xl:hidden border-t border-border bg-white">
           <nav className="mx-auto max-w-7xl px-4 py-4 space-y-1">
             {navItems.map((item) => {
               const isActive =
-                pathname === item.href ||
-                pathname.startsWith(item.href + "/");
+                pathname === item.href || pathname.startsWith(item.href + "/");
 
               if (item.children) {
                 return (
@@ -276,20 +332,61 @@ export function Navbar() {
                     </button>
                     {openDropdown === item.label && (
                       <div className="ml-4 mt-1 space-y-1">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={cn(
-                              "block rounded-md px-3 py-2 text-sm transition-colors",
-                              pathname === child.href
-                                ? "text-primary bg-primary-50"
-                                : "text-muted hover:text-primary hover:bg-primary-50"
-                            )}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
+                        {item.children.map((child) =>
+                          child.children ? (
+                            <div key={child.label}>
+                              <button
+                                onClick={() =>
+                                  setOpenSubmenu(
+                                    openSubmenu === child.label
+                                      ? null
+                                      : child.label
+                                  )
+                                }
+                                className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-secondary transition-colors hover:bg-primary-50 hover:text-primary cursor-pointer"
+                              >
+                                {child.label}
+                                <ChevronDown
+                                  className={cn(
+                                    "h-4 w-4 transition-transform",
+                                    openSubmenu === child.label && "rotate-180"
+                                  )}
+                                />
+                              </button>
+                              {openSubmenu === child.label && (
+                                <div className="ml-4 mt-1 space-y-1">
+                                  {child.children.map((leaf) => (
+                                    <Link
+                                      key={leaf.href}
+                                      href={leaf.href}
+                                      className={cn(
+                                        "block rounded-md px-3 py-2 text-sm transition-colors",
+                                        pathname === leaf.href
+                                          ? "text-primary bg-primary-50"
+                                          : "text-muted hover:text-primary hover:bg-primary-50"
+                                      )}
+                                    >
+                                      {leaf.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <Link
+                              key={child.label}
+                              href={child.href ?? "#"}
+                              className={cn(
+                                "block rounded-md px-3 py-2 text-sm transition-colors",
+                                pathname === child.href
+                                  ? "text-primary bg-primary-50"
+                                  : "text-muted hover:text-primary hover:bg-primary-50"
+                              )}
+                            >
+                              {child.label}
+                            </Link>
+                          )
+                        )}
                       </div>
                     )}
                   </div>
