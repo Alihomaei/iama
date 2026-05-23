@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
     children: [
       { label: "Events", href: "/events" },
       { label: "Annual Meeting", href: "/events/annual-meeting" },
+      { label: "Meeting App", href: "/app" },
     ],
   },
   {
@@ -106,9 +107,12 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    // Reset open menus on route change (browser-only navigation side effect).
+    /* eslint-disable react-hooks/set-state-in-effect */
     setMobileOpen(false);
     setOpenDropdown(null);
     setOpenSubmenu(null);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [pathname]);
 
   const handleSignOut = async () => {

@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { MeetingAppCta } from "@/components/sections/meeting-app-cta";
 import {
   Calendar,
   MapPin,
@@ -128,6 +129,8 @@ export default function CongressPage() {
             })}
           </div>
         </section>
+
+        <MeetingAppCta className="pt-16" />
 
         {/* Event Details */}
         <section className="py-20">

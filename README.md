@@ -17,6 +17,7 @@ directory, regional chapters and specialty sections, and an admin panel.
 | Email | Resend (transactional) |
 | Icons | lucide-react |
 | Analytics | Vercel Analytics |
+| Meeting App | Installable PWA (Web App Manifest + service worker) with Web Push (`web-push` + VAPID) |
 | Hosting | Vercel (production-only; push to `main` auto-deploys) |
 
 > **Important:** This project pins Next.js 16, which has breaking changes vs.
@@ -49,6 +50,7 @@ All keys live in `.env.local` (see `.env.local.example`):
 - **PayPal** — `NEXT_PUBLIC_PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`
 - **Resend** — `RESEND_API_KEY`
 - **App** — `NEXT_PUBLIC_APP_URL`
+- **Web Push (Meeting App)** — `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` (generate with `npx web-push generate-vapid-keys`), `CRON_SECRET` (authorizes the reminders cron)
 
 The middleware tolerates missing Supabase env vars so the app still boots
 locally without a configured backend.
@@ -58,7 +60,19 @@ locally without a configured backend.
 ```
 src/
 ├── app/                      # App Router routes
-│   ├── page.tsx              # Homepage (hero, stats, events, news, CTA, partners)
+│   ├── page.tsx              # Homepage (hero, meeting-app CTA, stats, events, news, CTA, partners)
+│   ├── manifest.ts           # PWA Web App Manifest (start_url /app, installable)
+│   ├── app/                  # 📱 Meeting App (PWA) — own chrome (top bar + bottom tabs)
+│   │   ├── page.tsx          #   Today: live Now/Next, today's sessions, quick links
+│   │   ├── schedule/         #   Full agenda — day tabs, track filter, search, Now/Next
+│   │   ├── sessions/[id]/    #   Session detail (moderators, panel, talks)
+│   │   ├── talks/[id]/       #   Individual talk detail (speaker, abstract)
+│   │   ├── people/[id]/      #   Speaker/moderator/panelist directory + profiles
+│   │   ├── my-agenda/        #   Saved sessions (local + Supabase sync), conflict flags
+│   │   ├── info/             #   Venue, reminders (push toggle), add-to-home-screen help
+│   │   ├── offline/          #   Offline fallback page
+│   │   ├── actions.ts        #   Server actions for saved-agenda items
+│   │   └── push-actions.ts   #   Server actions for Web Push subscriptions
 │   ├── about/ membership/ congress/ (register, schedule, speakers)
 │   ├── events/ (annual-meeting)
 │   ├── community/ (chapters/[slug], sections/[slug])
@@ -68,12 +82,16 @@ src/
 │   ├── auth/ (login, signup, callback)
 │   ├── dashboard/            # Member dashboard
 │   ├── admin/                # Admin panel (members, abstracts, events, content, settings)
-│   └── api/                  # Route handlers (abstracts, events, members, news, directory, stripe, paypal)
+│   └── api/                  # Route handlers (abstracts, events, members, news, directory, stripe, paypal, app/reminders)
 ├── components/
 │   ├── layout/               # navbar, footer, page-header
-│   ├── sections/             # hero, stats, featured-events, latest-news, membership-cta, partners
+│   ├── sections/             # hero, meeting-app-cta, stats, featured-events, latest-news, membership-cta, partners
+│   ├── app/                  # Meeting-app UI: app-nav, session-card, talk-row, person-avatar,
+│   │   │                     #   track-chip, now-next-banner, day-tabs, search-bar, save-button,
+│   │   │                     #   notify-toggle, pwa-register, use-saved-items
 │   └── ui/                   # button, input, textarea, select, tabs, card, badge
 ├── lib/
+│   ├── agenda/               # 📱 Meeting App content model + selectors (types, data, index)
 │   ├── supabase/             # client, server, middleware helpers
 │   ├── stripe.ts paypal.ts email.ts utils.ts
 │   └── chapters.ts sections.ts   # data for community chapter/section pages
@@ -82,17 +100,21 @@ src/
 public/
 ├── logo.png                  # official IAMA logo, opaque (used in the navbar)
 ├── logo-transparent.png      # transparent logo (auth pages + footer, on white plaques over dark)
+├── sw.js                     # service worker (offline cache + Web Push handlers)
+├── icon-192.png icon-512.png icon-maskable-512.png apple-touch-icon.png  # PWA icons
 └── images/                   # hero-1-v2.jpg, hero-2.jpg (homepage edges); events/ (2026 poster); news/; team/ (board headshots)
-supabase/migrations/          # SQL schema
+scripts/gen-icons.mjs         # regenerates PWA icons from the logo (sharp)
+supabase/migrations/          # SQL schema (001 base, 002 saved-agenda, 003 push)
 ```
 
 ## Routes
 
 - **Public:** `/`, `/about`, `/membership`, `/congress` (+ `register`, `schedule`, `speakers`), `/events` (+ `annual-meeting`), `/community` (+ `chapters/[slug]`, `sections/[slug]`), `/opportunities` (+ `mentorship`, `travel-grant`), `/donation`, `/news`, `/education`, `/directory`, `/advocacy`, `/abstracts/submit`, `/abstracts/status`
+- **Meeting App (PWA):** `/app` (Today), `/app/schedule`, `/app/sessions/[id]`, `/app/talks/[id]`, `/app/people` (+ `[id]`), `/app/my-agenda`, `/app/info`, `/app/offline`
 - **Auth:** `/auth/login`, `/auth/signup`, `/auth/callback`
 - **Member:** `/dashboard`
 - **Admin:** `/admin` (+ `members`, `abstracts`, `events`, `content`, `settings`)
-- **API:** `/api/abstracts` (+ `[id]`, `[id]/review`), `/api/events` (+ `[slug]`), `/api/members` (+ `[id]`), `/api/news` (+ `[slug]`), `/api/directory`, `/api/stripe/checkout`, `/api/stripe/webhook`, `/api/paypal/create-order`, `/api/paypal/capture-order`
+- **API:** `/api/abstracts` (+ `[id]`, `[id]/review`), `/api/events` (+ `[slug]`), `/api/members` (+ `[id]`), `/api/news` (+ `[slug]`), `/api/directory`, `/api/stripe/checkout`, `/api/stripe/webhook`, `/api/paypal/create-order`, `/api/paypal/capture-order`, `/api/app/reminders` (Web Push cron)
 
 ### Navigation
 
@@ -139,13 +161,16 @@ event_manager). Sections:
 
 ## Database
 
-Supabase Postgres. The schema lives in
+Supabase Postgres. The base schema lives in
 `supabase/migrations/001_initial_schema.sql`. Tables: `profiles`, `memberships`,
 `membership_pricing`, `congress_events`, `congress_pricing`, `registrations`,
 `abstracts`, `speakers`, `congress_schedule`, `news_posts`,
-`education_resources`, `payments`.
+`education_resources`, `payments`. Two follow-up migrations support the Meeting
+App: `002_meeting_app.sql` (`saved_agenda_items`) and `003_push.sql`
+(`push_subscriptions`, `sent_reminders`) — all with row-level security scoped to
+the owning user.
 
-Apply it via the Supabase SQL editor or the Supabase CLI.
+Apply them via the Supabase SQL editor or the Supabase CLI.
 
 ## Homepage hero
 
@@ -154,6 +179,52 @@ centered title, with photos on the left/right edges that fade toward the center
 (CSS masks). Images come from `public/images/hero-*.jpg` (left = speaker,
 right = audience). The image carousel/rotation is currently **paused** (renders
 statically). Original source photos are kept in `assests/` (untracked).
+
+## Meeting App (PWA)
+
+`/app` is an installable, mobile-first **conference companion** for the 30th
+Annual Meeting (Kimpton Hotel Monaco, Washington, D.C., **May 22–25, 2026**). It
+has its own app chrome (top bar + 5-tab bottom nav: Today · Schedule · Saved ·
+Speakers · Info) and is **installable to the home screen** ("Add to Home
+Screen") via `src/app/manifest.ts` + `public/sw.js`.
+
+- **Content model:** the entire real agenda lives as typed static data in
+  `src/lib/agenda/` (`types.ts`, `data.ts`, `index.ts`) — 4 days, 21 sessions,
+  46 talks, 61 people. Three addressable tiers: a **session** (e.g. the
+  Cardiovascular Panel), its individual **talks** (each with its own page), and
+  each **person** (oral/poster presenter, moderator, or panelist) with a profile
+  listing all their roles. Selectors (`getSessionsByDay`, `getNowAndNext`,
+  `getSessionsForPerson`, `searchAgenda`, …) are pure and offline-friendly.
+  Times are stored as venue-local wall-clock and resolved at EDT (UTC−4), so the
+  **Now/Next** indicator is correct on any device. `/congress/schedule` also
+  renders from this module (no more placeholder data).
+- **Personal agenda (save):** the star button (`save-button.tsx` +
+  `use-saved-items.ts`) is **offline-first** — it saves to `localStorage` so it
+  works today even with no backend, and **syncs to Supabase** (table
+  `saved_agenda_items`) when the user is signed in (email + password), merging
+  local picks up on first login. `/app/my-agenda` groups saves by day and flags
+  time **conflicts**.
+- **Notifications:** Web Push via `web-push` + VAPID. Users subscribe from
+  `/app/info`; subscriptions persist in `push_subscriptions`. The cron route
+  `GET /api/app/reminders` (authorized by `CRON_SECRET`, scheduled in
+  `vercel.json`) pushes a reminder ~10–20 min before a saved session.
+- **Install / offline:** `pwa-register.tsx` registers the service worker and
+  shows an install hint (Android/desktop button; iOS "Share → Add to Home
+  Screen"). Visited pages are cached; unknown routes fall back to `/app/offline`.
+
+**To enable saving-sync and push (needs Supabase + keys):**
+1. Connect Supabase (see **Admin panel** above) and apply
+   `supabase/migrations/002_meeting_app.sql` and `003_push.sql`.
+2. Generate keys: `npx web-push generate-vapid-keys`; set
+   `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, and a `CRON_SECRET` in
+   Vercel, then redeploy.
+3. The `*/5 * * * *` reminders cron needs a Vercel plan with sub-daily crons
+   (Pro+); on Hobby the route still works when called manually with the secret.
+
+Until then, the schedule, sessions, talks, speakers, install, and **on-device**
+saving all work; only cross-device sync and push require the backend.
+
+For local PWA/push testing over HTTPS: `npx next dev --experimental-https`.
 
 ## Deployment
 
@@ -176,6 +247,12 @@ project.
   only via a **temporary hardcoded passphrase** (`iama-admin-2026`,
   `ADMIN_BYPASS` in `src/app/admin/layout.tsx`). See **Admin panel** above for
   the full steps to connect Supabase and remove the bypass.
+- **Meeting App (PWA) — shipped:** `/app` is live with the real 30th Annual
+  Meeting agenda (schedule, sessions, talks, speaker profiles), a personal
+  "save" agenda (on-device now; Supabase-synced once the backend is connected),
+  installability, and Web Push reminders (needs VAPID keys + cron + Supabase to
+  fully activate — see **Meeting App (PWA)** above). `/congress/schedule` now
+  renders the real agenda from `src/lib/agenda`.
 - **Real content:** copy and data across the homepage, `/about`, `/membership`,
   `/congress`, `/events` (+ `annual-meeting`), `/community/*`, `/opportunities/*`,
   `/news`, and `/donation` now reflect real IAMA information sourced from the

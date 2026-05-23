@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { PageHeader } from "@/components/layout/page-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MeetingAppCta } from "@/components/sections/meeting-app-cta";
 import {
   CalendarDays,
   MapPin,
@@ -145,6 +146,8 @@ export default function AnnualMeetingPage() {
           </div>
         </section>
 
+        <MeetingAppCta className="py-12" />
+
         {/* Official event poster */}
         <section className="py-14 border-b border-border">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -209,7 +212,7 @@ export default function AnnualMeetingPage() {
               <div className="lg:col-span-2 space-y-4">
                 <h2 className="text-2xl font-bold text-secondary">About the Annual Meeting</h2>
                 <p className="text-muted leading-relaxed">
-                  The IAMA Annual Meeting is the association's most significant gathering of the
+                  The IAMA Annual Meeting is the association&apos;s most significant gathering of the
                   year — bringing together Iranian American physicians, medical students, residents,
                   and allied health professionals from across the United States. Since its
                   inaugural edition in 1993, the Annual Meeting has grown into a national forum for
