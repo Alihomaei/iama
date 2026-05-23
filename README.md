@@ -80,7 +80,8 @@ src/
 ├── types/database.ts
 └── middleware.ts
 public/
-├── logo.png                  # official IAMA logo (used in the navbar)
+├── logo.png                  # official IAMA logo, opaque (used in the navbar)
+├── logo-transparent.png      # transparent logo (auth pages + footer, on white plaques over dark)
 └── images/hero-1-v2.jpg, hero-2.jpg   # homepage hero edge images
 supabase/migrations/          # SQL schema
 ```

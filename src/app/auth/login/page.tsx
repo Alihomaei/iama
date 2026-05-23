@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Input } from "@/components/ui/input";
@@ -52,11 +53,14 @@ function LoginForm() {
       {/* Left panel — decorative */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900 items-center justify-center p-12">
         <div className="max-w-md text-white">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-2xl font-bold">
-              I
-            </div>
-            <span className="text-2xl font-bold">IAMA</span>
+          <div className="mb-8 inline-flex rounded-2xl bg-white px-6 py-4 shadow-lg">
+            <Image
+              src="/logo-transparent.png"
+              alt="Iranian American Medical Association"
+              width={766}
+              height={326}
+              className="h-14 w-auto"
+            />
           </div>
           <h2 className="text-3xl font-bold">Welcome Back</h2>
           <p className="mt-4 text-lg text-primary-100 leading-relaxed">
@@ -70,12 +74,15 @@ function LoginForm() {
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-sm">
           {/* Mobile logo */}
-          <div className="mb-8 flex items-center gap-2 lg:hidden">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white font-bold text-lg">
-                I
-              </div>
-              <span className="text-xl font-bold text-secondary">IAMA</span>
+          <div className="mb-8 lg:hidden">
+            <Link href="/" className="inline-flex items-center">
+              <Image
+                src="/logo-transparent.png"
+                alt="Iranian American Medical Association"
+                width={766}
+                height={326}
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
 

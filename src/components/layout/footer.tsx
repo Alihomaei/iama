@@ -49,15 +49,14 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* About IAMA */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="mb-4 inline-flex rounded-lg bg-white px-4 py-2.5">
               <Image
-                src="/logo.png"
-                alt="IAMA logo"
-                width={32}
-                height={32}
-                className="h-8 w-8 rounded-lg object-contain"
+                src="/logo-transparent.png"
+                alt="Iranian American Medical Association"
+                width={766}
+                height={326}
+                className="h-9 w-auto"
               />
-              <span className="text-lg font-bold">IAMA</span>
             </div>
             <p className="text-sm text-gray-300 leading-relaxed mb-6">
               The Iranian American Medical Association advances healthcare
