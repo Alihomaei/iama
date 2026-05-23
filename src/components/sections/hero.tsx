@@ -1,10 +1,4 @@
 import Link from "next/link";
-import {
-  Stethoscope,
-  GraduationCap,
-  Globe,
-  HeartPulse,
-} from "lucide-react";
 
 export function Hero() {
   return (
@@ -26,33 +20,14 @@ export function Hero() {
       <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent opacity-10 blur-3xl" />
 
       <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center lg:px-8 lg:py-32">
-        {/* Floating icons */}
-        <div className="absolute left-[10%] top-[20%] hidden opacity-20 lg:block">
-          <Stethoscope className="h-12 w-12" />
-        </div>
-        <div className="absolute right-[12%] top-[30%] hidden opacity-20 lg:block">
-          <GraduationCap className="h-10 w-10" />
-        </div>
-        <div className="absolute left-[15%] bottom-[25%] hidden opacity-20 lg:block">
-          <Globe className="h-10 w-10" />
-        </div>
-        <div className="absolute right-[10%] bottom-[20%] hidden opacity-20 lg:block">
-          <HeartPulse className="h-12 w-12" />
-        </div>
-
-        <span className="mb-4 inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
-          Iranian American Medical Association
-        </span>
-
         <h1 className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          Advancing Healthcare{" "}
-          <span className="text-primary-light">Excellence</span>
+          Iranian American Medical Association
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-100 sm:text-xl">
-          Connecting physicians, researchers, and medical professionals through
-          education, advocacy, and community. Join the leading network of Iranian
-          American healthcare leaders.
+          The Iranian American Medical Association (IAMA) is a 501(c)(3)
+          NON-PROFIT, NON-RELIGIOUS, NON-POLITICAL organization established for
+          charitable and educational purposes.
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Users, MapPin, Calendar, Globe } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: 3500, suffix: "+", label: "Active Members" },
+  { icon: Users, value: 1000, suffix: "+", label: "Active Members" },
   { icon: MapPin, value: 25, suffix: "", label: "Regional Chapters" },
   { icon: Calendar, value: 40, suffix: "+", label: "Annual Events" },
   { icon: Globe, value: 12, suffix: "", label: "Countries Represented" },
