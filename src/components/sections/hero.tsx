@@ -1,78 +1,49 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
-// Background carousel images. Add more paths here to extend the rotation —
-// the left edge shows the current image, the right edge shows the next one,
-// and they advance/crossfade on a timer.
-const carouselImages = ["/images/hero-1.jpg", "/images/hero-2.jpg"];
+// Hero edge images. Carousel rotation is paused for now — the left edge always
+// shows hero-1 (speaker) and the right edge always shows hero-2 (audience).
+// To re-enable rotation later, cycle these in a small client component.
+const leftImage = "/images/hero-1.jpg";
+const rightImage = "/images/hero-2.jpg";
 
 const leftMask = "linear-gradient(to right, black, black 18%, transparent 92%)";
 const rightMask = "linear-gradient(to left, black, black 18%, transparent 92%)";
 
 export function Hero() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (carouselImages.length < 2) return;
-    const timer = setInterval(
-      () => setIndex((prev) => (prev + 1) % carouselImages.length),
-      5000
-    );
-    return () => clearInterval(timer);
-  }, []);
-
-  const leftIndex = index;
-  const rightIndex = (index + 1) % carouselImages.length;
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-      {/* Background carousel — left edge, fades toward the center */}
+      {/* Left edge image, fades toward the center */}
       <div
         aria-hidden
         className="absolute inset-y-0 left-0 hidden w-1/3 md:block lg:w-2/5"
         style={{ maskImage: leftMask, WebkitMaskImage: leftMask }}
       >
-        {carouselImages.map((src, i) => (
-          <Image
-            key={src}
-            src={src}
-            alt=""
-            fill
-            sizes="40vw"
-            priority={i === 0}
-            className={cn(
-              "object-cover transition-opacity duration-1000 ease-in-out",
-              i === leftIndex ? "opacity-100" : "opacity-0"
-            )}
-          />
-        ))}
+        <Image
+          src={leftImage}
+          alt=""
+          fill
+          sizes="40vw"
+          priority
+          className="object-cover"
+        />
         {/* Teal tint so photos blend with the brand gradient */}
         <div className="absolute inset-0 bg-primary-900/45" />
       </div>
 
-      {/* Background carousel — right edge, fades toward the center */}
+      {/* Right edge image, fades toward the center */}
       <div
         aria-hidden
         className="absolute inset-y-0 right-0 hidden w-1/3 md:block lg:w-2/5"
         style={{ maskImage: rightMask, WebkitMaskImage: rightMask }}
       >
-        {carouselImages.map((src, i) => (
-          <Image
-            key={src}
-            src={src}
-            alt=""
-            fill
-            sizes="40vw"
-            className={cn(
-              "object-cover transition-opacity duration-1000 ease-in-out",
-              i === rightIndex ? "opacity-100" : "opacity-0"
-            )}
-          />
-        ))}
+        <Image
+          src={rightImage}
+          alt=""
+          fill
+          sizes="40vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-primary-900/45" />
       </div>
 
