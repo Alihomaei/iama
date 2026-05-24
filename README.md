@@ -60,7 +60,7 @@ locally without a configured backend.
 ```
 src/
 ├── app/                      # App Router routes
-│   ├── page.tsx              # Homepage (hero, meeting-app CTA, stats, events, news, CTA, partners)
+│   ├── page.tsx              # Homepage (hero, stats, meeting-app CTA, events, news, CTA, partners)
 │   ├── manifest.ts           # PWA Web App Manifest (start_url /app, installable)
 │   ├── app/                  # 📱 Meeting App (PWA) — own chrome (top bar + bottom tabs)
 │   │   ├── page.tsx          #   Today: live Now/Next, today's sessions, quick links
@@ -85,7 +85,7 @@ src/
 │   └── api/                  # Route handlers (abstracts, events, members, news, directory, stripe, paypal, app/reminders)
 ├── components/
 │   ├── layout/               # navbar, footer, page-header
-│   ├── sections/             # hero, meeting-app-cta, stats, featured-events, latest-news, membership-cta, partners
+│   ├── sections/             # hero, stats, meeting-app-cta, featured-events, latest-news, membership-cta, partners
 │   ├── app/                  # Meeting-app UI: app-nav, session-card, talk-row, person-avatar,
 │   │   │                     #   track-chip, now-next-banner, day-tabs, search-bar, save-button,
 │   │   │                     #   notify-toggle, pwa-register, use-saved-items
@@ -209,7 +209,9 @@ Screen") via `src/app/manifest.ts` + `public/sw.js`.
 - **Notifications:** Web Push via `web-push` + VAPID. Users subscribe from
   `/app/info`; subscriptions persist in `push_subscriptions`. The cron route
   `GET /api/app/reminders` (authorized by `CRON_SECRET`, scheduled in
-  `vercel.json`) pushes a reminder ~10–20 min before a saved session.
+  `vercel.json`) is meant to push a reminder ~10–20 min before a saved session
+  — that timing needs Pro's per-minute cron; the daily Hobby cron (see below)
+  only fires once a day.
 - **Install / offline:** `pwa-register.tsx` registers the service worker and
   shows an install hint (Android/desktop button; iOS "Share → Add to Home
   Screen"). Visited pages are cached; unknown routes fall back to `/app/offline`.
