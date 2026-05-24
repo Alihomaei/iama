@@ -14,8 +14,8 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <MeetingAppCta className="py-12" />
         <Stats />
+        <MeetingAppCta className="py-12" />
         <FeaturedEvents />
         <LatestNews />
         <MembershipCTA />
