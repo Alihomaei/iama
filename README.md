@@ -218,8 +218,11 @@ Screen") via `src/app/manifest.ts` + `public/sw.js`.
 2. Generate keys: `npx web-push generate-vapid-keys`; set
    `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, and a `CRON_SECRET` in
    Vercel, then redeploy.
-3. The `*/5 * * * *` reminders cron needs a Vercel plan with sub-daily crons
-   (Pro+); on Hobby the route still works when called manually with the secret.
+3. The reminders cron is set to daily (`0 12 * * *`) so it deploys on **Hobby** —
+   Hobby rejects sub-daily crons at build time (it blocks the whole deployment).
+   For 5-min reminders, upgrade to Pro and change `vercel.json` back to
+   `*/5 * * * *`. On any plan the route also works when called manually with the
+   `CRON_SECRET`.
 
 Until then, the schedule, sessions, talks, speakers, install, and **on-device**
 saving all work; only cross-device sync and push require the backend.
