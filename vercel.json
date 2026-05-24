@@ -4,7 +4,7 @@
   "crons": [
     {
       "path": "/api/app/reminders",
-      "schedule": "*/5 * * * *"
+      "schedule": "0 12 * * *"
     }
   ]
 }
