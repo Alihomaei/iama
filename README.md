@@ -100,10 +100,12 @@ src/
 public/
 ├── logo.png                  # official IAMA logo, opaque (used in the navbar)
 ├── logo-transparent.png      # transparent logo (auth pages + footer, on white plaques over dark)
+├── seal.png                  # circular IAMA seal cropped from logo.png — source for favicon + PWA icons
 ├── sw.js                     # service worker (offline cache + Web Push handlers)
-├── icon-192.png icon-512.png icon-maskable-512.png apple-touch-icon.png  # PWA icons
+├── icon-192.png icon-512.png icon-maskable-512.png apple-touch-icon.png  # PWA icons (seal on teal)
 └── images/                   # hero-1-v2.jpg, hero-2.jpg (homepage edges); events/ (2026 poster); news/; team/ (board headshots)
-scripts/gen-icons.mjs         # regenerates PWA icons from the logo (sharp)
+src/app/favicon.ico           # browser favicon — transparent circular seal (generated)
+scripts/gen-icons.mjs         # regenerates seal.png, PWA icons (seal on teal) + favicon.ico (sharp + ImageMagick)
 supabase/migrations/          # SQL schema (001 base, 002 saved-agenda, 003 push)
 ```
 
